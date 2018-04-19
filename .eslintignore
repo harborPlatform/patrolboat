@@ -1,0 +1,9 @@
+tmp/**
+build/**
+node_modules/**
+contracts/**
+bower_components/**
+test/**
+migrations/1_initial_migration.js
+migrations/2_deploy_contracts.js
+
