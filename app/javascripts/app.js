@@ -51,7 +51,6 @@ onLoadVeiw.loadNomalWeb3();
 var acs  = web3.eth.accounts;
 
 
-
 $(document).on('ready', function() {
     $("#input-b6").fileinput({
         showUpload: false,
