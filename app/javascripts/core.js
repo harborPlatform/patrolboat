@@ -9,12 +9,12 @@ const owable = require('../../build/contracts/Ownable.json');
 
 // console.log(JSON.stringify(owable.abi));
 
-console.log(window.web3.version)
-web3.version.getNetwork(function(err, netId){
-  alert(netId)
-});
-console.log(owable);
-console.log(window.web3)
+// console.log(window.web3.version)
+// web3.version.getNetwork(function(err, netId){
+  // alert(netId)
+// });
+// console.log(owable);
+// console.log(window.web3)
 
 window.pb = {}
 window.pb.provider = {
