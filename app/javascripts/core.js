@@ -18,7 +18,6 @@ window.pb.provider = {
       window.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     }
   }
-
 }//참고
 //https://ethereum.stackexchange.com/questions/31928/call-a-contract-with-web3js-ethereumjs-tx?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
@@ -28,6 +27,9 @@ window.pb.wallet = {
   }
 }
 
+$('#file_json').change(function (e) {
+    alert(e);
+});
 
 
 window.pb.provider.default();
