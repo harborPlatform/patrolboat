@@ -125,19 +125,11 @@ window.pb.wallet = {
 }
 
 window.action ={
-  allocated = '',
   allocateSend:function(addr){
     window.util.msg('send');
   },
   touch:function(addr){
     window.util.msg(addr);
-    if(window.action.allocated !==''){
-      $('#sendethid').val(window.action.allocated)
-      $('#modal_popup_box').show()
-    },
-  dipose:function(){
-    window.action.allocated ='';
-  }
   }
 }
 
