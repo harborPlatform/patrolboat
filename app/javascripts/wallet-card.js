@@ -15,9 +15,9 @@ window.account = {
 		for(var i=0; i<wallets.length; i++) {
 			//console.log("i:"+i+" / "+wallets[i]+",");
 
-		var wallet =         ' <div class="demo-card-wide mdl-card mdl-shadow--2dp">';
+		var wallet =         ' <div class="demo-card-wide mdl-card mdl-shadow--2dp" >';
 		    wallet = wallet + '    <div class="inner-container">';
-		    wallet = wallet + '      <div class="inner-container-layout" id="copyBtn" onclick="util.copyToClipboard($("#acount-address").text())" style="font-size:1em; color:gray; padding:15px 5px 2px 13px;">';
+		    wallet = wallet + '      <div class="inner-container-layout" id="copyBtn" onclick="util.copyToClipboard(\'' + wallets[i].info.address +'\')" style="font-size:1em; color:gray; padding:15px 5px 2px 13px;">';
 		    wallet = wallet + '        <i class="far fa-clone" ></i>';
 		    wallet = wallet + '      </div>';
 		    wallet = wallet + '      <div class="inner-container-layout mdl-card__supporting-text" id="acount-address" style="width:85%; padding:15px 0px 2px 0px;" >';
@@ -27,7 +27,7 @@ window.account = {
 		    wallet = wallet + '        <i class="fas fa-cog"></i>';
 		    wallet = wallet + '      </div>';
 		    wallet = wallet + '    <div class="inner-container">';
-		    wallet = wallet + '      <div class="inner-container-layout mdl-card__supporting-text" style="width:50%; padding-top:0px; padding-bottom:0px">';
+		    wallet = wallet + '      <div class="inner-container-layout mdl-card__supporting-text" style="width:50%; padding-top:0px; padding-bottom:0px" onclick="window.action.touch(\'' + wallets[i].info.address +'\')">';
 		    wallet = wallet + '        <img src=' + wallets[i].view.avatar + ' class="br-100 h4 w4 dib ba b--black-05 pa0">';
 		    wallet = wallet + '      </div>';
 		    wallet = wallet + '      <div class="inner-container-layout mdl-card__supporting-text" style="width:32%;">';
@@ -37,7 +37,7 @@ window.account = {
 		    wallet = wallet + '    <div class="inner-container" style="height:35px">';
 		    wallet = wallet + '      <div class="button-align">';
 		    wallet = wallet + '        <div class="inner-container-layout">';
-		    wallet = wallet + '          <button class="f6 link dim br3 ba ph3 pv2 mb2 dib navy" style="margin-right:10px;" >';
+		    wallet = wallet + '          <button class="f6 link dim br3 ba ph3 pv2 mb2 dib navy" style="margin-right:10px;" onclick="window.action.allocateSend(\'' + wallets[i].info.address +'\')" >';
 		    wallet = wallet + '            send';
 		    wallet = wallet + '          </button>';
 		    wallet = wallet + '        </div>';

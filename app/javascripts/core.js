@@ -125,8 +125,19 @@ window.pb.wallet = {
 }
 
 window.action ={
-  touch:function(){
-
+  allocated = '',
+  allocateSend:function(addr){
+    window.util.msg('send');
+  },
+  touch:function(addr){
+    window.util.msg(addr);
+    if(window.action.allocated !==''){
+      $('#sendethid').val(window.action.allocated)
+      $('#modal_popup_box').show()
+    },
+  dipose:function(){
+    window.action.allocated =''
+  }
   }
 }
 
@@ -156,7 +167,7 @@ window.util = {
     try {
       var successful = document.execCommand('copy')
       var msg = successful ? 'successful' : 'unsuccessful'
-      alert('Copying text command was ' + msg)
+      window.util.msg('Copied ' + text)
     } catch (err) {
       console.log('Oops, unable to copy')
     }

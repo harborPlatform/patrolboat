@@ -13,11 +13,11 @@ window.account = {
 	
 		var wallets = window.pb.wallet.list;
 		for(var i=0; i<wallets.length; i++) {
-			//console.log("i:"+i+" / "+wallets[i]+",");
+			//console.log("i:"+i+" / "+wallets[i]+","); 
 
-		var wallet =         ' <div class="demo-card-wide mdl-card mdl-shadow--2dp">';
+		var wallet =         ' <div class="demo-card-wide mdl-card mdl-shadow--2dp" >';
 		    wallet = wallet + '    <div class="inner-container">';
-		    wallet = wallet + '      <div class="inner-container-layout" id="copyBtn" onclick="util.copyToClipboard($("#acount-address").text())" style="font-size:1em; color:gray; padding:15px 5px 2px 13px;">';
+		    wallet = wallet + '      <div class="inner-container-layout" id="copyBtn" onclick="util.copyToClipboard("' + wallets[i].info.address + '")" style="font-size:1em; color:gray; padding:15px 5px 2px 13px;">';
 		    wallet = wallet + '        <i class="far fa-clone" ></i>';
 		    wallet = wallet + '      </div>';
 		    wallet = wallet + '      <div class="inner-container-layout mdl-card__supporting-text" id="acount-address" style="width:85%; padding:15px 0px 2px 0px;" >';
