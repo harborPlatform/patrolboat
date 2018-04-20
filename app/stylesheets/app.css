@@ -17,6 +17,13 @@
   color: #fff;
 }
 
+
+.pic-card
+{
+  height: 176px;
+  background: url('https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/10.png') center / cover;
+}
+
 .container
 {
     white-space: nowrap; /*Prevents Wrapping*/
