@@ -123,7 +123,12 @@ window.pb.wallet = {
 
   }
 }
- 
+
+window.action ={
+  touch:function(){
+
+  }
+}
 
 window.util = {
 
