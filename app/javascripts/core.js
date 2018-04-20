@@ -46,7 +46,7 @@ window.pb.wallet = {
   loadDefault:function () {
     window.pb.wallet.list = window.web3.eth.accounts;
 
-    console.log(window.pb.wallet.list);
+    //console.log(window.pb.wallet.list);
 
   },
   getPrivateKey:function () {
