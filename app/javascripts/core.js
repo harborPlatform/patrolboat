@@ -50,6 +50,11 @@ window.pb.wallet = {
 
 window.util = {
   copyToClipboard (text) {
+    text = text.replace(/\s+/, "");
+    text = text.replace(/\s+$/g, "");
+    text = text.replace(/\n/g, "");
+    text = text.replace(/\r/g, "");
+
     var textArea = document.createElement('textarea')
     textArea.value = text
     document.body.appendChild(textArea)
@@ -57,7 +62,7 @@ window.util = {
     try {
       var successful = document.execCommand('copy')
       var msg = successful ? 'successful' : 'unsuccessful'
-      console.log('Copying text command was ' + msg)
+      alert('Copying text command was ' + msg)
     } catch (err) {
       console.log('Oops, unable to copy')
     }

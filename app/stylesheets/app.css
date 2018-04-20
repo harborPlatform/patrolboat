@@ -29,7 +29,7 @@
     white-space: nowrap; /*Prevents Wrapping*/
     
     width: 1500px;
-    //height: 290px;
+    height: 250px;
     overflow-x: scroll;
     overflow-y: hidden;
 }

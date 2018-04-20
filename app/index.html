@@ -15,13 +15,8 @@
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css"/>
 </head>
 <body>
+
 <div class="container">
-  <!-- <form action="/file-upload" class="dropzone" id="dropzone_json"> </form> -->
-  <!-- <div>
-    <label for="profile_pic">Choose file</label>
-    <input type="file" id="file_json" onchange="window.pb.contract.loadJsonfile();" accept=".json,.txt">
-  </div> -->
-  
 
 <!--  <div class="">
      <span id="current_address" class="f6 fw6 black-40 fl">0x**************************************</span>
@@ -30,14 +25,12 @@
   </div> 
  -->
 
-
-
  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
     <div class="inner-container">
-      <div class="inner-container-layout" id="copyBtn" onclick="copyToClipboard()" style="font-size:1em; color:gray; padding:15px 5px 2px 13px;">
+      <div class="inner-container-layout" id="copyBtn" onclick="util.copyToClipboard($('#acount-address').text())" style="font-size:1em; color:gray; padding:15px 5px 2px 13px;">
         <i class="far fa-clone" ></i>
       </div>
-      <div class="inner-container-layout mdl-card__supporting-text" id="acountAdress" style="width:85%; padding:15px 0px 2px 0px;" >
+      <div class="inner-container-layout mdl-card__supporting-text" id="acount-address" style="width:85%; padding:15px 0px 2px 0px;" >
         0xe02b91BB52994B652B0dE9AE0D87Cc48a7986f95
       </div>
       <div class="inner-container-layout" style="font-size:1em; color:gray; padding:5px 5px 2px 0px;">
@@ -46,8 +39,7 @@
       </div>
 
     <div class="inner-container">
-      <div class="inner-container-layout mdl-card__supporting-text" style="width:50%;">
-        <!-- <div class="pic-card"></div> -->
+      <div class="inner-container-layout mdl-card__supporting-text" style="width:50%; padding-top:0px; padding-bottom:0px">
         <img src="https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/10.png" class="br-100 h4 w4 dib ba b--black-05 pa0">
       </div>
       <div class="inner-container-layout mdl-card__supporting-text" style="width:32%;">
@@ -55,7 +47,7 @@
       </div>
     </div>
 
-    <div class="inner-container" style="height:40px">
+    <div class="inner-container" style="height:35px">
       <div class="button-align">
         <div class="inner-container-layout">
           <button class="f6 link dim br3 ba ph3 pv2 mb2 dib navy" style="margin-right:10px;" >
@@ -88,6 +80,10 @@
 
 
   </div>
+
+
+
+
 
 
 
