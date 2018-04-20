@@ -1,8 +1,9 @@
 //alert('test');
 
 
-$(".copyBtn").click(function(){
+$("#copyBtn").click(function(){
 	copyToClipboard();
+	alert('TEST');
 });
 
 
@@ -14,8 +15,8 @@ function copyToClipboard(){
 }
 
 
- var div = document.getElementById('acountAdress')[0];
+ // var div = document.getElementById('acountAdress')[0];
 
- div.addEventListener('click', function (event) {
-     alert('Hi!');
- });
+ // div.addEventListener('click', function (event) {
+ //     alert('Hi!');
+ // });
