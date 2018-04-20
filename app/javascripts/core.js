@@ -83,7 +83,7 @@ window.pb.wallet = {
 
   },
   loadDefault:function () {
-    
+
     var acs = window.web3.eth.accounts;
     for (var i = 0; i < acs.length; i++) {
         this.pushWallet(acs[i]);
@@ -125,6 +125,14 @@ window.pb.wallet = {
 
 window.util = {
 
+  alert:function(msg){
+    var notyf = new Notyf();
+    notyf.alert(msg);
+  },
+  msg:function(){
+    var notyf = new Notyf();
+    notyf.confirm(msg);
+  },
   getRandomInt:function (min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   },
@@ -157,6 +165,9 @@ window.util = {
         }
     }
     return false;
+  },
+  toastMsg:function(){
+
   }
 }
 
@@ -186,7 +197,7 @@ window.pb.contract = {
     var structureContract = window.web3.eth.contract(abi)
 
     rappedContract.deployed().then(function (obj,err) {
-      runtimeContract = structureContract.at(obj.address)
+      var runtimeContract = structureContract.at(obj.address)
 
       var item = {};
       item.address = obj.address;
@@ -263,30 +274,26 @@ window.log = {
                 if (!stopErr) { 
                   console.log('loadingResult', n, cmd, hash, receipt.blockNumber, receipt.blockHash, receipt.status)
                   
-                  HarborDb.update(n, cmd, hash, receipt.blockNumber, receipt.blockHash, receipt.status)
+                  //update(n, cmd, hash, receipt.blockNumber, receipt.blockHash, receipt.status)
 
                   if (receipt.status != '0x0') {
-                    console.log(true, cmd, hash, 'transaction is success')
+                    Util.msg( cmd +' hash'+ hash + ' transaction is success')
                   } else {
-                    console.log(false, cmd, hash, 'transaction is false')
+                    Util.alert( cmd +' hash'+ hash + ' transaction is false')
                   }
                   // after done
-                  Wallet.bindWallets()
-                  if ($('#eth_list').css('display') != 'none') {
-                    Harbor.reloadETH()
-                  }
-                } else {
-                  Util.actcompleted(false, cmd, hash, stopErr)
+                  
+                  
                 }
               })
             
           } else {
-            console.log('receiptErr', receiptErr)
-            Util.actcompleted(false, cmd, hash, receiptErr)
+            Util.alert('receiptErr:' + receiptErr)
+            //alert(false, cmd, hash, receiptErr)
           }
         })
       } else {
-        Util.actcompleted(false, cmd, hash, watchErr)
+        Util.alert('error :'+ cmd +' hash:'+ hash +' msg:'+ watchErr)
       }
       if (filter == 'undefined' || filter == null) {
         

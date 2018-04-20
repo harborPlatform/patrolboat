@@ -6,10 +6,15 @@
 
 import '../stylesheets/basic.css'
 import '../stylesheets/dropzone.css'
+import '../stylesheets/notyf.min.css'
+
+import '../stylesheets/notyf.min.css'
 import '../stylesheets/app.css'
-import './dropzone.js'
+
+// import './dropzone.js'
 
 // import { default as tfc } from 'truffle-contract'
+
 import './core.js'
 import './accounts.js'
 
