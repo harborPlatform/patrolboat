@@ -43,7 +43,6 @@ https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images
 
 ico 
 https://fontawesome.com/
-
 */
 
 /*

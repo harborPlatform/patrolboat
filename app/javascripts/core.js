@@ -2,6 +2,7 @@
 const Web3 = require('web3')
 const Tx = require('ethereumjs-tx');
 const truffleContract = require("truffle-contract");
+const BN = require('bn.js');
 
 
 const owable = require('../../build/contracts/Ownable.json');
@@ -16,6 +17,28 @@ const owable = require('../../build/contracts/Ownable.json');
 // });
 // console.log(owable);
 // console.log(window.web3)
+
+/*
+wallet structure
+  <데이터 영역>
+   지갑주소: 고유식별자
+   금액: Eth 잔액
+   EthRC20:배열 데이터
+  <View영역>
+   별칭:임이의 이름
+   아바타: 별칭 이미지이며, 임이의 이미지
+   아바타성별
+   아바타 번호
+
+avatar
+//https://github.com/Ashwinvalento/cartoon-avatar
+ * MALE : 1 - 129 * FEMALE : 1 - 114
+example
+https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/male/45.png
+
+ico 
+https://fontawesome.com/
+*/
 
 window.pb = {}
 window.pb.provider = {
@@ -43,15 +66,64 @@ window.pb.provider = {
 
 window.pb.wallet = {
   list:[],
+  pushWallet:function(addr){
+    var item = {};
+    item.info = {};
+    item.view = {};
+
+    item.info.address = addr.toString();
+    item.info.balance = this.refreshBalance();
+    item.info.erc20 = [];
+    item.view.name = window.pb.wallet.list.length;
+    var avatar = this.popAvata();
+    item.view.avatar = avatar.path;
+    item.view.gender = avatar.gender;
+    item.view.num = avatar.num;
+    window.pb.wallet.list.push(item);
+
+  },
   loadDefault:function () {
-    window.pb.wallet.list = window.web3.eth.accounts;
+    var acs = window.web3.eth.accounts;
+    for (var i = 0; i < acs.length; i++) {
+        this.pushWallet(acs[i]);
+    }
+    // window.pb.wallet.list = window.web3.eth.accounts;
+    console.log(window.pb.wallet.list)
   },
   getPrivateKey:function () {
+
+  },
+  refreshBalance:function (addr) {
+    return 0;
+  },
+  refreshAllBalance:function(){
+
+  },popAvata:function(){
+    var gender = window.util.getRandomInt(0,1);
+    var avatar = {};
+    if(gender){
+      var num = window.util.getRandomInt(0,129);
+      avatar.gender = gender;
+      avatar.num = num;
+      avatar.path = 'https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/male/'+num+'.png';
+
+    }else{
+      var num = window.util.getRandomInt(0,114);
+      avatar.gender = gender;
+      avatar.num = num;
+      avatar.path = 'https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/'+num+'.png';
+    }
+
+    return avatar;
 
   }
 }
 
 window.util = {
+
+  getRandomInt:function (min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  },
   copyToClipboard (text) {
     text = text.replace(/\s+/, "");
     text = text.replace(/\s+$/g, "");
@@ -122,7 +194,7 @@ window.pb.contract = {
       // alert(window.pb.contract.list[0].address)
 
     })
-  },send:function (to,from){
+  },send:function(to,from){
 
   },
   sendTransactionbyNumber:function(contractAddr,sender){
@@ -135,8 +207,88 @@ window.pb.contract = {
   },
   sendTransaction:function (info,ethValue,gasPrice,gasLimit) {
     info.sendTransaction();
-  }
+    web3.eth.sendTransaction({ from:CurrentAddress, to:toAddr, value: web3.toWei(ethValue, 'ether'), gasLimit:gasLimit, gasPrice:gasPrice },
+     function (err, h) {
 
+     });
+  },
+  sendRawTransaction:function (toAddr,ethValue, fromPriv){
+    var privateKey = new Buffer(fromPriv, 'hex')
+    var rawTx = {
+      nonce: this.getNonce(),
+      gasPrice: this.getGasprice(), 
+      gasLimit: this.getGaslimit(),
+      to: toAddr, 
+      value: ethValue, 
+      data: '0x'
+    }
+    var tx = new Tx(rawTx);
+    tx.sign(privateKey);
+
+    var serializedTx = tx.serialize();
+    web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function(err, hash) {
+    if (!err)
+      console.log(hash); // "0x7f9fade1c0d57a7af66ab4ead79fade1c0d57a7af66ab4ead7c2c2eb7b11a91385"
+    });
+  }
+  ,getNonce:function (addr){
+    var number = web3.eth.getTransactionCount(address);
+    return number
+  },
+  getGasprice:function () {
+    return new BN('20000000000')
+  },
+  getGaslimit:function () {
+    return new BN('43092000')
+  }
+}
+
+window.log = {
+  appendTransactionRaceptView:function(){
+
+  },
+  appendTransactionRacept:function(cmd, hash) {
+
+    var filter = web3.eth.filter('latest')
+    filter.watch(function (watchErr, log) {
+      if (!watchErr) {
+        web3.eth.getTransactionReceipt(hash, function (receiptErr, receipt) {
+          if (!receiptErr && receipt != null) {
+              
+              filter.stopWatching(function (stopErr, result) {
+                if (!stopErr) { 
+                  console.log('loadingResult', n, cmd, hash, receipt.blockNumber, receipt.blockHash, receipt.status)
+                  
+                  HarborDb.update(n, cmd, hash, receipt.blockNumber, receipt.blockHash, receipt.status)
+
+                  if (receipt.status != '0x0') {
+                    console.log(true, cmd, hash, 'transaction is success')
+                  } else {
+                    console.log(false, cmd, hash, 'transaction is false')
+                  }
+                  // after done
+                  Wallet.bindWallets()
+                  if ($('#eth_list').css('display') != 'none') {
+                    Harbor.reloadETH()
+                  }
+                } else {
+                  Util.actcompleted(false, cmd, hash, stopErr)
+                }
+              })
+            
+          } else {
+            console.log('receiptErr', receiptErr)
+            Util.actcompleted(false, cmd, hash, receiptErr)
+          }
+        })
+      } else {
+        Util.actcompleted(false, cmd, hash, watchErr)
+      }
+      if (filter == 'undefined' || filter == null) {
+        
+      }
+    })
+  }
 }
 
 
