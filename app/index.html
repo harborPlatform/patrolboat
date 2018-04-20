@@ -9,25 +9,28 @@
   <link rel="stylesheet" href="../../bower_components/components-font-awesome/css/font-awesome.min.css">
   <script src="../../bower_components/jquery/dist/jquery.min.js"></script> -->
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="./app.js"></script>
+ 
 
   <!-- Material Design Lite -->
-  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
   <!-- Material Design icon font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css"/>
-
-
 </head>
 <body>
 <div class="container">
+  <form action="/file-upload"
+      class="dropzone"
+      id="dropzone_json">
+  </form>
+
+  <div>
+    <label for="profile_pic">Choose file</label>
+    <input type="file" id="file_json"  onchange="window.pb.contract.loadJsonfile();"
+          accept=".json,.txt">
+  </div>
 
 <!--   <div class="demo-card-wide mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title">
@@ -131,6 +134,15 @@
 </div>
 
 
+
+  <!-- jQuery-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+ <!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  --> <!-- Material Design Lite -->
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+  <script src="./app.js"></script>
 
 
 </body>
