@@ -136,7 +136,7 @@ window.action ={
       $('#modal_popup_box').show()
     },
   dipose:function(){
-    window.action.allocated =''
+    window.action.allocated ='';
   }
   }
 }
