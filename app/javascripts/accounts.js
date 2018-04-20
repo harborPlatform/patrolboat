@@ -31,7 +31,7 @@ window.account = {
 		    wallet = wallet + '        <img src=' + wallets[i].view.avatar + ' class="br-100 h4 w4 dib ba b--black-05 pa0">';
 		    wallet = wallet + '      </div>';
 		    wallet = wallet + '      <div class="inner-container-layout mdl-card__supporting-text" style="width:32%;">';
-		    wallet = wallet + '        <h4>99.45</h4>';
+		    wallet = wallet + '        <h4>' + wallets[i].info.balance.toNumber(); + '</h4>';
 		    wallet = wallet + '      </div>';
 		    wallet = wallet + '    </div>';
 		    wallet = wallet + '    <div class="inner-container" style="height:35px">';
