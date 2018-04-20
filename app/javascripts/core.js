@@ -83,6 +83,7 @@ window.pb.wallet = {
 
   },
   loadDefault:function () {
+    
     var acs = window.web3.eth.accounts;
     for (var i = 0; i < acs.length; i++) {
         this.pushWallet(acs[i]);
@@ -115,9 +116,12 @@ window.pb.wallet = {
     }
 
     return avatar;
+  },
+  getPrivateKey:function () {
 
   }
 }
+ 
 
 window.util = {
 
