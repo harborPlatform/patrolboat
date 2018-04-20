@@ -73,7 +73,7 @@ window.pb.wallet = {
 
 
     item.info.address = addr.toString();
-    item.info.balance = this.refreshBalance();
+    item.info.balance = this.refreshBalance(addr);
     item.info.erc20 = [];
     item.view.name = window.pb.wallet.list.length;
     var avatar = this.popAvata();
@@ -97,7 +97,8 @@ window.pb.wallet = {
 
   },
   refreshBalance:function (addr) {
-    return 0;
+    console.log(addr)
+    return window.web3.fromWei(window.web3.eth.getBalance(addr),'ether');
   },
   refreshAllBalance:function(){
 
