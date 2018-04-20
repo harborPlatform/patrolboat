@@ -16,7 +16,8 @@ import '../stylesheets/app.css'
 // import { default as tfc } from 'truffle-contract'
 
 import './core.js'
-import './accounts.js'
+import './wallet-card.js'
+import './contract-card.js'
 
 
 // Dropzone.options.myAwesomeDropzone = {

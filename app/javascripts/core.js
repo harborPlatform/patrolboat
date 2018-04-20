@@ -322,8 +322,8 @@ window.pb.provider.default();
 window.pb.wallet.loadDefault();
 window.pb.contract.loadTruffleJson(owable);
 
-console.log(window.pb.contract.list);
-console.log(window.pb.contract.list.length);
+// console.log(window.pb.contract.list);
+// console.log(window.pb.contract.list.length);
 
 // console.log(window.pb.wallet.list);
 // console.log(window.pb.contract.list.length);

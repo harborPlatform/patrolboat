@@ -2,7 +2,7 @@
 .demo-card-wide.mdl-card {
   width: 400px;
   //float:left;
-  margin-right:10px;
+  margin-left:15px;
 
   display: inline-block; /*Display inline and maintain block characteristics.*/
   vertical-align: top; /*Makes sure all the divs are correctly aligned.*/
