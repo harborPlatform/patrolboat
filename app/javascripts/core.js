@@ -1,6 +1,6 @@
 
 const Web3 = require('web3')
-const EthereumTx = require('ethereumjs-tx');
+const Tx = require('ethereumjs-tx');
 const truffleContract = require("truffle-contract");
 
 
@@ -45,6 +45,9 @@ window.pb.wallet = {
   list:[],
   loadDefault:function () {
     window.pb.wallet.list = window.web3.eth.accounts;
+  },
+  getPrivateKey:function () {
+
   }
 }
 
@@ -119,7 +122,21 @@ window.pb.contract = {
       // alert(window.pb.contract.list[0].address)
 
     })
+  },send:function (to,from){
+
+  },
+  sendTransactionbyNumber:function(contractAddr,sender){
+    var list = window.pb.contract.list;
+    for (var i = 0; i < list.length; i++) {
+         if(list[i].address === contractAddr){
+
+         }
+      }
+  },
+  sendTransaction:function (info,ethValue,gasPrice,gasLimit) {
+    info.sendTransaction();
   }
+
 }
 
 

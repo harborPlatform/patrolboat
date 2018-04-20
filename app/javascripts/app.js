@@ -14,8 +14,6 @@ import './core.js'
 import './accounts.js'
 
 
-
-
 // Dropzone.options.myAwesomeDropzone = {
 //   init: function() {
 //     this.on("addedfile", function(file) { alert("Added file."); });

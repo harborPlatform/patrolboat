@@ -20,3 +20,19 @@
  // div.addEventListener('click', function (event) {
  //     alert('Hi!');
  // });
+
+window.account = {
+	init:function(){
+		this.refreshWallet();
+	},
+	clearWallet:function(){
+
+	},
+	refreshWallet:function(){
+
+	}
+}
+
+ // window.account.clearWallet();
+
+ setTimeout(function(){  window.account.init(); }, 3000);
