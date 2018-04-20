@@ -8,7 +8,7 @@ import '../stylesheets/basic.css'
 import '../stylesheets/dropzone.css'
 import '../stylesheets/notyf.min.css'
 
-import '../stylesheets/notyf.min.css'
+import '../stylesheets/notyf.min.js'
 import '../stylesheets/app.css'
 
 // import './dropzone.js'

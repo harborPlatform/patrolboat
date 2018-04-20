@@ -131,7 +131,7 @@ window.util = {
     var notyf = new Notyf();
     notyf.alert(msg);
   },
-  msg:function(){
+  msg:function(msg){
     var notyf = new Notyf();
     notyf.confirm(msg);
   },
@@ -305,7 +305,7 @@ window.log = {
 }
 
 
-
+window.util.msg('sss');
 
 // $('#file_json').change(function (e) {
 //   alert('file changed');
