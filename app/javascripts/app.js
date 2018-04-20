@@ -27,6 +27,7 @@ window.pb.provider = {
 
 }//참고
 //https://ethereum.stackexchange.com/questions/31928/call-a-contract-with-web3js-ethereumjs-tx?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+
 window.pb.wallet = {
   loadDefault:function () {
     window.pb.wallet.list = window.web3.eth.accounts
