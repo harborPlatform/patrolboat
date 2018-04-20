@@ -1,10 +1,16 @@
 
 var MultiSigWallet = artifacts.require('./MultiSigWallet.sol');
+var Ownable = artifacts.require('./Ownable.sol');
 
 module.exports = function(deployer, network, accounts) {
-  return deployer.deploy(MultiSigWallet,accounts[0],1).then(async()=>{
-    // var ms = await MultiSigWallet.deployed();
+
+  return deployer.deploy(Ownable).then(async()=>{
+    var own = await Ownable.deployed();
   });
+
+  // return deployer.deploy(MultiSigWallet,accounts[0],1).then(async()=>{
+  //   // var ms = await MultiSigWallet.deployed();
+  // });
 };
 
 
