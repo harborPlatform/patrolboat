@@ -16,12 +16,12 @@
 </head>
 <body>
 <div class="container">
-  <form action="/file-upload" class="dropzone" id="dropzone_json"> </form>
+  <!-- <form action="/file-upload" class="dropzone" id="dropzone_json"> </form> -->
 
-  <div>
+  <!-- <div>
     <label for="profile_pic">Choose file</label>
     <input type="file" id="file_json" onchange="window.pb.contract.loadJsonfile();" accept=".json,.txt">
-  </div>
+  </div> -->
 
 <!--   <div class="demo-card-wide mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title">
@@ -43,14 +43,22 @@
     </div>
   </div> -->
 
-  <div class="fl w-100">
-       <span id="current_address" class="f6 fw6 black-40 fl">0x**************************************</span>
-       <i class="fa fa-clipboard f5 fl pl3 grow hover-blue pointer" aria-hidden="true" onclick="util.copyToClipboard($('#current_address').text());"></i>
-       <i class="fa fa-refresh fr pr2 grow hover-blue pointer" aria-hidden="true" ></i>
-      </div>
+  <!-- <article class="vh-100 dt w-100 bg-dark-pink">
+  <div class="dtc v-mid tc white ph3 ph4-l">
+    <h1 class="f6 f2-m f-subheadline-l fw6 tc">Vertically centering things in css is easy!</h1>
+  </div>
+</article> -->
+
+ <div class="fl w-100">
+     <span id="current_address" class="f6 fw6 black-40 fl">0x**************************************</span>
+     <i class="fa fa-clipboard f5 fl pl3 grow hover-blue pointer" aria-hidden="true" onclick="util.copyToClipboard($('#current_address').text());"></i>
+     <i class="fa fa-refresh fr pr2 grow hover-blue pointer" aria-hidden="true" ></i>
+  </div> 
 
 
-  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+
+
+ <div class="demo-card-wide mdl-card mdl-shadow--2dp">
     <div class="inner-container">
       <div class="inner-container-layout" id="copyBtn" onclick="copyToClipboard()" style="font-size:1em; color:gray; padding:15px 5px 2px 13px;">
         <i class="far fa-clone" ></i>
