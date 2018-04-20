@@ -21,14 +21,14 @@ window.account = {
 		    wallet = wallet + '        <i class="far fa-clone" ></i>';
 		    wallet = wallet + '      </div>';
 		    wallet = wallet + '      <div class="inner-container-layout mdl-card__supporting-text" id="acount-address" style="width:85%; padding:15px 0px 2px 0px;" >';
-		    wallet = wallet + '        0xe02b91BB52994B652B0dE9AE0D87Cc48a7986f95';
+		    wallet = wallet + '        ' + wallets[i].info.address + '';
 		    wallet = wallet + '      </div>';
 		    wallet = wallet + '      <div class="inner-container-layout" style="font-size:1em; color:gray; padding:5px 5px 2px 0px;">';
 		    wallet = wallet + '        <i class="fas fa-cog"></i>';
 		    wallet = wallet + '      </div>';
 		    wallet = wallet + '    <div class="inner-container">';
 		    wallet = wallet + '      <div class="inner-container-layout mdl-card__supporting-text" style="width:50%; padding-top:0px; padding-bottom:0px">';
-		    wallet = wallet + '        <img src="https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/10.png" class="br-100 h4 w4 dib ba b--black-05 pa0">';
+		    wallet = wallet + '        <img src=' + wallets[i].view.avatar + ' class="br-100 h4 w4 dib ba b--black-05 pa0">';
 		    wallet = wallet + '      </div>';
 		    wallet = wallet + '      <div class="inner-container-layout mdl-card__supporting-text" style="width:32%;">';
 		    wallet = wallet + '        <h4>99.45</h4>';
@@ -70,7 +70,7 @@ window.account = {
 
 
 
-
+		console.log(window.pb.wallet.list);
 
 
 
