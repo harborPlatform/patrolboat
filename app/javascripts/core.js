@@ -5,7 +5,7 @@ const EthereumTx = require('ethereumjs-tx')
 window.pb = {}
 window.pb.provider = {
   default:function () {
-    this.changeProvider('mainnet')
+    this.changeProvider('local')
   },
   changeProvider:function (network, ips, port) {
     if (network === 'undefined' || network === '') { return }
@@ -14,7 +14,7 @@ window.pb.provider = {
       window.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     } else if (network === 'custom') {
       window.web3 = new Web3(new Web3.providers.HttpProvider('http://' + ips + ':' + port));
-    } else if (network === 'ropsten') {
+    } else if (network === 'local') {
       window.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     }
   }
@@ -26,7 +26,6 @@ window.pb.wallet = {
   loadDefault:function () {
     window.pb.wallet.list = window.web3.eth.accounts;
   }
-
 }
 
 
