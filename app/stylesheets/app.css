@@ -1,6 +1,12 @@
 
 .demo-card-wide.mdl-card {
   width: 512px;
+  //float:left;
+  margin-right:10px;
+
+  display: inline-block; /*Display inline and maintain block characteristics.*/
+  vertical-align: top; /*Makes sure all the divs are correctly aligned.*/
+  white-space: normal; /*Prevents child elements from inheriting nowrap.*/
 }
 .demo-card-wide > .mdl-card__title {
   color: #fff;
@@ -9,4 +15,14 @@
 }
 .demo-card-wide > .mdl-card__menu {
   color: #fff;
+}
+
+.container
+{
+    white-space: nowrap; /*Prevents Wrapping*/
+    
+    width: 1500px;
+    //height: 290px;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }

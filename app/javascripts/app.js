@@ -6,7 +6,9 @@
 import '../stylesheets/app.css'
 // import { default as tfc } from 'truffle-contract'
 import './core.js'
+import './accounts.js'
 
+alert(window.pb.wallet.list[0]);
 
 /*
 wallet structure
