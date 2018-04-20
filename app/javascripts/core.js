@@ -1,9 +1,10 @@
 
 const Web3 = require('web3')
-const EthereumTx = require('ethereumjs-tx')
+const EthereumTx = require('ethereumjs-tx');
+const truffleContract = require("truffle-contract");
+
 
 const owable = require('../../build/contracts/Ownable.json');
-
 // alert(window.web3.networks)
 // alert(JSON.stringify(owable.networks));
 
@@ -18,6 +19,7 @@ const owable = require('../../build/contracts/Ownable.json');
 
 window.pb = {}
 window.pb.provider = {
+  networkId:'',
   default:function () {
     this.changeProvider('local')
   },
@@ -31,6 +33,10 @@ window.pb.provider = {
     } else if (network === 'local') {
       window.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     }
+
+    window.web3.version.getNetwork(function(err, result) {
+        window.pb.provider.networkId = result;
+    });
   }
 }//참고
 //https://ethereum.stackexchange.com/questions/31928/call-a-contract-with-web3js-ethereumjs-tx?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
@@ -39,6 +45,20 @@ window.pb.wallet = {
   list:[],
   loadDefault:function () {
     window.pb.wallet.list = window.web3.eth.accounts;
+  }
+}
+
+window.util = {
+  duplicateCheck:function(arr,addr) {
+    var counts = [];
+    for(var i = 0; i <= arr.length; i++) {
+        if(counts[a[i]] === undefined) {
+            counts[a[i]] = 1;
+        } else {
+            return true;
+        }
+    }
+    return false;
   }
 }
 
@@ -58,9 +78,28 @@ window.pb.contract = {
     // $.getJSON("Ownable.json", function(json) {
     // console.log(json); // this will show the info it in firebug console
     // });
+  },
+  loadTruffleJson:function(_json){
+    var rappedContract = truffleContract(_json);
+    rappedContract.setProvider(window.web3.currentProvider);
+    var abi = JSON.parse(JSON.stringify(rappedContract)).abi
+    
+    var structureContract = window.web3.eth.contract(abi)
+
+    rappedContract.deployed().then(function (obj,err) {
+      runtimeContract = structureContract.at(obj.address)
+
+      var item = {};
+      item.address = obj.address;
+      item.info = obj.runtimeContract;
+      item.view = {};
+      window.pb.contract.list.push(item);
+
+      console.log(obj);
+      alert(window.pb.contract.list[0].address)
+
+    })
   }
-
-
 }
 
 // $('#file_json').change(function (e) {
@@ -70,3 +109,6 @@ window.pb.contract = {
 
 window.pb.provider.default();
 window.pb.wallet.loadDefault();
+window.pb.contract.loadTruffleJson(owable);
+
+

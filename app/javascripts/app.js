@@ -14,6 +14,8 @@ import './core.js'
 import './accounts.js'
 
 
+
+
 // Dropzone.options.myAwesomeDropzone = {
 //   init: function() {
 //     this.on("addedfile", function(file) { alert("Added file."); });
@@ -49,7 +51,9 @@ https://fontawesome.com/
 /*
 contract structure
   <데이터 영역>
-    
+    address : 배포된 주소
+    info : 실행 가능한 contract 객체
+      
   <View영역>
-   
+   view : UI관련 설정들 추가
 */
