@@ -91,13 +91,12 @@ window.pb.wallet = {
         this.pushWallet(acs[i]);
     }
     // window.pb.wallet.list = window.web3.eth.accounts;
-    console.log(window.pb.wallet.list)
+    // console.log(window.pb.wallet.list)
   },
   getPrivateKey:function () {
 
   },
   refreshBalance:function (addr) {
-    console.log(addr)
     return window.web3.fromWei(window.web3.eth.getBalance(addr),'ether');
   },
   refreshAllBalance:function(){
@@ -204,11 +203,11 @@ window.pb.contract = {
 
       var item = {};
       item.address = obj.address;
-      item.info = obj.runtimeContract;
+      item.info = runtimeContract;
       item.view = {};
       window.pb.contract.list.push(item);
 
-      console.log(obj);
+      // console.log(obj);
       // alert(window.pb.contract.list[0].address)
 
     })
@@ -306,6 +305,8 @@ window.log = {
 }
 
 
+
+
 // $('#file_json').change(function (e) {
 //   alert('file changed');
 //     alert(e);
@@ -316,4 +317,5 @@ window.pb.provider.default();
 window.pb.wallet.loadDefault();
 window.pb.contract.loadTruffleJson(owable);
 
+console.log(window.pb.contract.list);
 

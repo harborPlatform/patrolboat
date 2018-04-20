@@ -70,7 +70,7 @@ window.account = {
 
 
 
-		console.log(window.pb.wallet.list);
+		// console.log(window.pb.wallet.list);
 
 
 
