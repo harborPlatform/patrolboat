@@ -45,8 +45,11 @@ window.pb.wallet = {
   list:[],
   loadDefault:function () {
     window.pb.wallet.list = window.web3.eth.accounts;
+    console.log(window.pb.wallet.list);
+
   }
 }
+ 
 
 window.util = {
   copyToClipboard (text) {
