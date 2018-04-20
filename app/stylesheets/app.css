@@ -1,6 +1,6 @@
 
 .demo-card-wide.mdl-card {
-  width: 500px;
+  width: 400px;
   //float:left;
   margin-right:10px;
 
@@ -37,4 +37,9 @@
   display: inline-block; /*Display inline and maintain block characteristics.*/
   vertical-align: top; /*Makes sure all the divs are correctly aligned.*/
   white-space: normal; /*Prevents child elements from inheriting nowrap.*/
+}
+
+.button-align
+{
+  float:right;
 }
