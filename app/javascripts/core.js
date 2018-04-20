@@ -71,6 +71,7 @@ window.pb.wallet = {
     item.info = {};
     item.view = {};
 
+
     item.info.address = addr.toString();
     item.info.balance = this.refreshBalance();
     item.info.erc20 = [];
@@ -80,6 +81,7 @@ window.pb.wallet = {
     item.view.gender = avatar.gender;
     item.view.num = avatar.num;
     window.pb.wallet.list.push(item);
+
 
   },
   loadDefault:function () {
