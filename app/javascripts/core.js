@@ -67,6 +67,7 @@ window.pb.contract = {
   loadJsonfile:function () {
     // var path = $('#file_json').val(); //$('#file_json');
     var filname = $("#file_json").val();
+    console.log(filname);
     // var fileContent = getTxt();
     // var jsonData = JSON.parse(fileContent);
     // console.log(jsonData);
@@ -96,16 +97,18 @@ window.pb.contract = {
       window.pb.contract.list.push(item);
 
       console.log(obj);
-      alert(window.pb.contract.list[0].address)
+      // alert(window.pb.contract.list[0].address)
 
     })
   }
 }
 
+
 // $('#file_json').change(function (e) {
 //   alert('file changed');
 //     alert(e);
 // });
+
 
 window.pb.provider.default();
 window.pb.wallet.loadDefault();
