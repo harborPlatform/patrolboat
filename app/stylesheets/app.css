@@ -1,6 +1,6 @@
 
 .demo-card-wide.mdl-card {
-  width: 512px;
+  width: 500px;
   //float:left;
   margin-right:10px;
 
@@ -25,4 +25,16 @@
     //height: 290px;
     overflow-x: scroll;
     overflow-y: hidden;
+}
+
+.inner-container
+{
+    white-space: nowrap;
+}
+
+.inner-container .inner-container-layout
+{
+  display: inline-block; /*Display inline and maintain block characteristics.*/
+  vertical-align: top; /*Makes sure all the divs are correctly aligned.*/
+  white-space: normal; /*Prevents child elements from inheriting nowrap.*/
 }
