@@ -2,11 +2,11 @@
 Ethereum Smart contract test tool with UI support
 *Other languages: [English](README.md), [한국어](README.ko.md)]*
 
-##SeoulEthereumMeetup Hackathon (2018/4/24 14:00 ~ next day 06:00)
+## SeoulEthereumMeetup Hackathon (2018/4/24 14:00 ~ next day 06:00)
 - Plan for presentation 
-https://docs.google.com/presentation/d/1w-jPVe7lhoqhAhg9ll8uCGPwQR5UBhfOHTf5KheTMbI/edit?usp=sharing
+[link](https://docs.google.com/presentation/d/1w-jPVe7lhoqhAhg9ll8uCGPwQR5UBhfOHTf5KheTMbI/edit?usp=sharing)
 - Result announcement
-https://docs.google.com/presentation/d/1RUSk7vmv6_51ADHiQG2vxPdCh-pVrXnARmgalBTGA2c/edit?usp=sharing
+[link](https://docs.google.com/presentation/d/1RUSk7vmv6_51ADHiQG2vxPdCh-pVrXnARmgalBTGA2c/edit?usp=sharing)
 
 ## Problem
 Smart contract testing is difficult and takes too much time.
