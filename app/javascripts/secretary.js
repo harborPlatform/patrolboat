@@ -4,6 +4,6 @@ window.pb.secretary = {
     return false;
   },
   sendContract:function (_from, _to, _value, _gasprice, _gaslimit) {
-
+    
   }
 };

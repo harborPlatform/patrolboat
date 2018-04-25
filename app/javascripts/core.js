@@ -103,13 +103,13 @@ window.pb.wallet = {
     var avatar = {};
     var num = 0;
     if (gender) {
-      num = window.util.getRandomInt(0, 129);
+      num = window.util.getRandomInt(1, 129);
       avatar.gender = gender;
       avatar.num = num;
       avatar.path = 'https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/male/' +
        num + '.png';
     } else {
-      num = window.util.getRandomInt(0, 114);
+      num = window.util.getRandomInt(1, 114);
       avatar.gender = gender;
       avatar.num = num;
       avatar.path = 'https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/' +
@@ -121,14 +121,56 @@ window.pb.wallet = {
 };
 
 window.action = {
-  allocateSend:function (addr) {
-    window.util.msg('send');
+  target:{
+    from:'',
+    to:'',
+    control:{}
+  },
+  allocateSend:function (ctrl, addr) {
+    this.uneableAll();
+    this.resetBtn();
+    window.util.msg('send from:' + addr);
+    $(ctrl).css('background-color', 'red');
+    this.target.from = addr;
+    this.target.control = ctrl;
+
   },
   touch:function (addr) {
-    window.util.msg(addr);
-  }
-}
+    // window.util.msg(addr);
+    if (this.target.from !== '' && this.target.from !== 'undefined') {
+      window.util.alert(this.target.from);
+      $('#modal_popup').show();
+      $('#modal_popup_box').show();
+      this.resetBtn();
+    }
+  },
+  resetBtn:function () {
+    this.target.from = '';
+    this.target.to = '';
+    this.target.control = {};
+    $(this.target.control).css('background-color', 'LightGray');
+  },
+  uneableAll:function () {
+    // $('[id]').each(function () {
+    //   if ($(this).attr('id') == 'sendAction') {
+    //     $(this).removeClass('red');
+    //     //window.util.alert('zzz');
+    //   }
+    // });
+    //$('#sendAction').removeClass('red');
+  },
+  sendtransaction:function () {
+    var _from = this.target.from;
+    var _to = this.target.to;
+    var _value = $('#send_ether').val();
+    // var _gasprice = $('#send_gasprice').val();
+    // var _gaslimit = $('#send_gaslimit').val();
 
+    window.web3.eth.sendTransaction ({ from:_from, to:_to, value: window.web3.toWei(_value, 'ether') });
+
+
+  }
+};
 window.util = {
 
   alert:function (msg) {
@@ -139,8 +181,8 @@ window.util = {
       newWindow: true,
       close: false,
       gravity: 'bottom', // `top` or `bottom`
-      positionLeft: true, // `true` or `false`
-      backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)'
+      positionLeft: false, // `true` or `false`
+      backgroundColor: 'linear-gradient(to right, #642b73, #c6426e)'
     }).showToast();
   },
   msg:function (msg) {
@@ -271,7 +313,7 @@ window.pb.contract = {
   getGaslimit:function () {
     return new BN('43092000');
   }
-}
+};
 
 window.log = {
   appendTransactionRaceptView:function () {

@@ -32,7 +32,7 @@ window.account = {
       wallet = wallet + '    <div class="inner-container" style="height:35px">';
       wallet = wallet + '      <div class="button-align">';
       wallet = wallet + '        <div class="inner-container-layout">';
-      wallet = wallet + '          <button class="f6 link dim br3 ba ph3 pv2 mb2 dib navy" style="margin-right:10px;" onclick="window.action.allocateSend(\'' + wallets[i].info.address +'\')" >';
+      wallet = wallet + '          <button id="sendAction" class="f6 link dim br3 ba ph3 pv2 mb2 dib navy" style="margin-right:10px;" onclick="window.action.allocateSend(this,\'' + wallets[i].info.address +'\')" >';
       wallet = wallet + '            send';
       wallet = wallet + '          </button>';
       wallet = wallet + '        </div>';
@@ -42,7 +42,7 @@ window.account = {
       wallet = wallet + '          </button>';
       wallet = wallet + '        </div>';
       wallet = wallet + '        <div class="inner-container-layout">';
-      wallet = wallet + '          <button class="f6 link dim br3 ba ph3 pv2 mb2 dib navy" style="margin-right:10px;">';
+      wallet = wallet + '          <button id="btn_sendtransaction" class="f6 link dim br3 ba ph3 pv2 mb2 dib navy" style="margin-right:10px;" onclick="">';
       wallet = wallet + '            sendTransaction';
       wallet = wallet + '          </button>';
       wallet = wallet + '        </div>';
@@ -61,6 +61,8 @@ window.account = {
       e.innerHTML = wallet;
       document.getElementById('wallets-card').appendChild(e);
     }
+     // $('#btn_sendtransaction').addClass('red');
+
   // console.log(window.pb.wallet.list);
   }
 };

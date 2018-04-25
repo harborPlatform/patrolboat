@@ -94,7 +94,7 @@
           <span class="f6 db black-70"></span>
         </div>
         <div>
-          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_ether"  id="send_ether">
+          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_ether" value="1" id="send_ether">
         </div>
     </li>
     <li
@@ -104,7 +104,7 @@
           <span class="f6 db black-30"></span>
         </div>
         <div>
-          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_gasprice"  id="send_gasprice">
+          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_gasprice" value="2000" id="send_gasprice">
         </div>
     </li>
     <li
@@ -114,14 +114,21 @@
           <span class="f6 db black-30"></span>
         </div>
         <div>
-          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_gaslimit"  id="send_gaslimit">
+          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_gaslimit" value="30000"  id="send_gaslimit">
         </div>
     </li>
   </ul>
-  <div class="ma3 tr">
+  <div class="ma3">
+    <span class="w-100 tr">
+      <input class="tl b ph3 pv2 input-reset ba b--gray gray bg-transparent grow pointer f6" type="submit" value="Code Info"  onclick="$('#codeinfo').show();">
 
-    <input class="b ph3 pv2 input-reset ba b--blue blue bg-transparent grow pointer f6" type="submit" value="send">
-    <input class="b ph3 pv2 input-reset ba b--red red bg-transparent grow pointer  f6" onclick="$('#modal_popup').hide();$('#modal_popup_box').hide();" type="submit"  value="close"></div>
+      <input class="tr b ph3 pv2 input-reset ba b--blue blue bg-transparent grow pointer f6" type="submit" value="send">
+      <input class="tr b ph3 pv2 input-reset ba b--red red bg-transparent grow pointer  f6" onclick="$('#modal_popup').hide();$('#modal_popup_box').hide();" type="submit"  value="close">
+    </span>
+  </div>
+    <div id="codeinfo" style="display:none;">
+    <textarea id="codeinfo_sample"  class="w-100 hide"></textarea>
+    </div>
 </div>
   
   <!-- </div> -->
