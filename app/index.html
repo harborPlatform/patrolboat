@@ -122,7 +122,7 @@
     <span class="w-100 tr">
       <input class="tl b ph3 pv2 input-reset ba b--gray gray bg-transparent grow pointer f6" type="submit" value="Code Info"  onclick="$('#codeinfo').show();">
 
-      <input class="tr b ph3 pv2 input-reset ba b--blue blue bg-transparent grow pointer f6" type="submit" value="send">
+      <input class="tr b ph3 pv2 input-reset ba b--blue blue bg-transparent grow pointer f6" type="submit" value="send" onclick="javascript:window.action.sendtransaction();$('#modal_popup').hide();$('#modal_popup_box').hide();">
       <input class="tr b ph3 pv2 input-reset ba b--red red bg-transparent grow pointer  f6" onclick="$('#modal_popup').hide();$('#modal_popup_box').hide();" type="submit"  value="close">
     </span>
   </div>

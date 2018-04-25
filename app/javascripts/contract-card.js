@@ -1,5 +1,4 @@
 
-
 window.pb.uicontract = {
   init:function () {
     this.refreshContract();
@@ -39,6 +38,20 @@ window.pb.uicontract = {
     }
     return c;
   },
+  sendtransaction:function (_addr, _func) {
+    util.msg( _addr + '//' + _func);
+    var obj = window.pb.contract.getContractByAddr(_addr);
+    console.log(obj);
+    // var abi = obj.info.abi;
+    // var inputs;
+    // for (var i = 0; i < abi.length; i++) {
+    //   if (abi[i].name === _func) {
+    //     inputs = abi[i].inputs;
+    //   }
+    // }
+
+    // console.log(inputs);
+  },
   bindRaw:function (abi, name, addr) {
     var rowItem = '';
     for (var i = 0; i < abi.length; i++) {
@@ -49,8 +62,8 @@ window.pb.uicontract = {
         }
       }
 
-      rowItem = rowItem + '      <li class="flex items-center lh-copy pa3 ph0-l bb b--black-10" data-item="' +
-       JSON.stringify(abi[i]) + '" onclick="util.msg(\' ' + abi[i].name + '\',)">';
+      rowItem = rowItem + '      <li class="flex items-center lh-copy pa3 ph0-l bb b--black-10" data-abi="' +
+       JSON.stringify(abi[i]) + '" onclick="pb.uicontract.sendtransaction( \' ' + addr + '\'  ,\'' +  abi[i].name + '\' )">';
       rowItem = rowItem + '          <div class="pl3 flex-auto">';
       rowItem = rowItem + '            <span class="f3 db black-70">' + abi[i].name + '</span>';
       rowItem = rowItem + '            <span class="f6 db black-70">function</span>';

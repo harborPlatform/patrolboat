@@ -133,18 +133,21 @@ window.action = {
     $(ctrl).css('background-color', 'red');
     this.target.from = addr;
     this.target.control = ctrl;
-
   },
   touch:function (addr) {
     // window.util.msg(addr);
     if (this.target.from !== '' && this.target.from !== 'undefined') {
       window.util.alert(this.target.from);
+      this.target.to = addr;
       $('#modal_popup').show();
       $('#modal_popup_box').show();
+      
+    }else{
       this.resetBtn();
     }
   },
   resetBtn:function () {
+    console.log('reset!!')
     this.target.from = '';
     this.target.to = '';
     this.target.control = {};
@@ -165,7 +168,8 @@ window.action = {
     var _value = $('#send_ether').val();
     // var _gasprice = $('#send_gasprice').val();
     // var _gaslimit = $('#send_gaslimit').val();
-
+    console.log(_from, _to, _value);
+    // alert(window.web3.toWei(_value, 'ether'));
     window.web3.eth.sendTransaction ({ from:_from, to:_to, value: window.web3.toWei(_value, 'ether') });
 
 
@@ -265,6 +269,22 @@ window.pb.contract = {
       window.pb.contract.list.push(item);
       window.pb.uicontract.addContract(item);
     });
+  },
+  getContractByAddr:function (_addr) {
+    var list = window.pb.contract.list;
+    console.log(list)
+    for (var i = 0; i < list.length; i++) {
+      console.log(list[i].address, '"'+_addr+'"');
+       if(list[i].address === '"'+_addr+'"') {
+        console.log(list[i]);
+        return list[i];
+       }else {
+        console.log('is not match ????');
+       }
+    }
+  },
+  getFunctionByName:function (_name) {
+
   },
   send:function (to, from) {
 
