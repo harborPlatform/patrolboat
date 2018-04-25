@@ -200,15 +200,12 @@ window.pb.contract = {
     var reader = new FileReader ();
     reader.onload = function () {
       var text = reader.result;
-      // var node = document.getElementById('output');
-      // node.innerText = text;
-      // console.log(reader.result.substring(0, 200));
       var json = JSON.parse(text);
       console.log(json);
       window.pb.contract.loadTruffleJson(json);
     };
     reader.readAsText(input.files[0]);
-    window.contract.reloadContract();
+    // window.contract.reloadContract();
   },
   loadTruffleJson:function (_json) {
     var rappedContract = truffleContract(_json);
@@ -224,6 +221,7 @@ window.pb.contract = {
       item.view = {};
       console.log('push');
       window.pb.contract.list.push(item);
+      window.pb.uicontract.addContract(item);
     });
   },
   send:function (to, from) {
@@ -245,7 +243,7 @@ window.pb.contract = {
      });
   },
   sendRawTransaction:function (toAddr,ethValue, fromPriv) {
-    var privateKey = new Buffer(fromPriv, 'hex')
+    var privateKey = new Buffer(fromPriv, 'hex');
     var rawTx = {
       nonce: this.getNonce(),
       gasPrice: this.getGasprice(),
@@ -310,11 +308,6 @@ window.log = {
     });
   }
 };
-
-window.data = {
-  
-}
-
 
 // $('#file_json').change(function (e) {
 //   alert('file changed');

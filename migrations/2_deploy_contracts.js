@@ -9,7 +9,7 @@ module.exports = function(deployer, network, accounts) {
     var own = await Ownable.deployed();
   });
 
-   deployer.deploy(TestCalls).then(async()=>{
+  deployer.deploy(TestCalls).then(async()=>{
     var own = await TestCalls.deployed();
   });
 

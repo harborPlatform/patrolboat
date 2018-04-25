@@ -13,10 +13,10 @@ import '../stylesheets/app.css';
 // import Toastify from 'toastify-js';
 // import { default as tfc } from 'truffle-contract'
 
-import './core.js'
-import './wallet-card.js'
-import './contract-card.js'
-
+import './core.js';
+import './secretary.js';
+import './wallet-card.js';
+import './contract-card.js';
 
 // Dropzone.options.myAwesomeDropzone = {
 //   init: function() {
@@ -53,7 +53,6 @@ contract structure
   <데이터 영역>
     address : 배포된 주소
     info : 실행 가능한 contract 객체
-      
   <View영역>
    view : UI관련 설정들 추가
 */

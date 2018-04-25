@@ -1,11 +1,12 @@
 # Patrol boat
 Ethereum Smart contract test tool with UI support
+
 *Other languages: [English](README.md), [한국어](README.ko.md)]*
 
 ## SeoulEthereumMeetup Hackathon (2018/4/24 14:00 ~ next day 06:00)
-- Plan for presentation 
+- Plan for presentation : 
 [link](https://docs.google.com/presentation/d/1w-jPVe7lhoqhAhg9ll8uCGPwQR5UBhfOHTf5KheTMbI/edit?usp=sharing)
-- Result announcement
+- Result announcement :
 [link](https://docs.google.com/presentation/d/1RUSk7vmv6_51ADHiQG2vxPdCh-pVrXnARmgalBTGA2c/edit?usp=sharing)
 
 ## Problem

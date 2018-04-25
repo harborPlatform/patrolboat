@@ -1,5 +1,6 @@
 
-window.contract = {
+
+window.pb.uicontract = {
   init:function () {
     this.refreshContract();
   },
@@ -15,16 +16,28 @@ window.contract = {
   },
   refreshContract:function () {
     console.log('cnt:', window.pb.contract.list.length);
-    if (window.pb.contract.list.length === 0) {
-      return;
-    }
-    var container = '  <div id ="contract-card-containner" class=" w-30 ba b--black-20 bg-white shadow-1 ma3">';
-    container = container + this.bindTable();
+    var container = '  <div id ="contract-card-containner" class="list w-100 ba b--black-20  ">';
+    container = container + this.addAllContract();
     container = container + '  </div>';
     container = container + '';
     var e = document.createElement('span');
     e.innerHTML = container;
     document.getElementById('contract-card').appendChild(e);
+  },
+  addContract:function (_contract) {
+    var c = this.bindTable(_contract);
+    // var e = document.createElement('span');
+    // e.innerHTML = c;
+    document.getElementById('contract-card-containner').insertAdjacentHTML('beforeend', c);
+  },
+  addAllContract:function () {
+    console.log(window.pb.contract.list);
+    var contracts = window.pb.contract.list;
+    var c = '';
+    for (var i = 0; i < contracts.length; i++) {
+      c = c + this.bindTable(contracts[i]);
+    }
+    return c;
   },
   bindRaw:function (abi, name, addr) {
     var rowItem = '';
@@ -50,35 +63,26 @@ window.contract = {
     }
     return rowItem;
   },
-  bindTable:function () {
-    console.log(window.pb.contract.list);
-    var contracts = window.pb.contract.list;
+  bindTable:function (_constact) {
     var c = '';
-    for (var i = 0; i < contracts.length; i++) {
-      var abi = contracts[i].info.abi;
-      var name = contracts[i].name;
-      var addr = contracts[i].address;
-      // console.log('@@@@@@@@@@@@@@');
-      // console.log( contracts[i]);
-      // var keys = Object.keys(contracts[i].info);
-      // console.log(keys);
-      console.log(abi);
-      var rowItems = this.bindRaw(abi, name, addr);
-      console.log(contracts[i]);
-      c = c + ' <ul class="list pa3 mt0">';
-      c = c + '      <li class="flex items-center lh-copy tc bb b--black-10">';
-      c = c + '          <div class="tc flex-auto">';
-      c = c + '            <div><span class="f2 lh-title">' + name + '</span><i class="fas fa-sync-alt"></i></div>';
-      c = c + '            <div>';
-      c = c + '            <span class="f7 blue tl">' + addr + '</span>';
-      c = c + '          </div>';
-      c = c + '          </div>';
-      c = c + '      </li>';
-      c = c.concat(rowItems);
-      c = c + '    </ul>';
-    }
+    var abi = _constact.info.abi;
+    var name = _constact.name;
+    var addr = _constact.address;
+
+    var rowItems = this.bindRaw(abi, name, addr);
+    c = c + ' <ul class="list fl w-20 pa3 ma3 bg-white shadow-1" >';
+    c = c + '      <li class="flex items-center lh-copy tc bb b--black-10">';
+    c = c + '          <div class="tc flex-auto">';
+    c = c + '            <div><span class="f2 lh-title">' + name + '</span><i class="fas fa-sync-alt"></i></div>';
+    c = c + '            <div>';
+    c = c + '            <span class="f7 blue tl">' + addr + '</span>';
+    c = c + '          </div>';
+    c = c + '          </div>';
+    c = c + '      </li>';
+    c = c.concat(rowItems);
+    c = c + '    </ul>';
     return c;
   }
 };
 
-setTimeout(function () { window.contract.init(); }, 2000);
+setTimeout(function () { window.pb.uicontract.init(); }, 2000);
