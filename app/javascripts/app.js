@@ -4,28 +4,25 @@
 // import '../../bower_components/tachyons/css/tachyons.min.css'
 // import '../../bower_components/animate.css/animate.min.css'
 
-import '../stylesheets/basic.css'
-import '../stylesheets/dropzone.css'
-import '../stylesheets/notyf.min.css'
+import '../stylesheets/basic.css';
+import '../stylesheets/dropzone.css';
 
-import '../stylesheets/notyf.min.js'
-import '../stylesheets/app.css'
+import '../stylesheets/app.css';
 
 // import './dropzone.js'
-
+// import Toastify from 'toastify-js';
 // import { default as tfc } from 'truffle-contract'
 
-import './core.js'
-import './wallet-card.js'
-import './contract-card.js'
-
+import './core.js';
+import './secretary.js';
+import './wallet-card.js';
+import './contract-card.js';
 
 // Dropzone.options.myAwesomeDropzone = {
 //   init: function() {
 //     this.on("addedfile", function(file) { alert("Added file."); });
 //   }
 // };
-
 
 // var myDropzone = new Dropzone("dropzone_json", { url: "/file/post"});
 
@@ -56,7 +53,6 @@ contract structure
   <데이터 영역>
     address : 배포된 주소
     info : 실행 가능한 contract 객체
-      
   <View영역>
    view : UI관련 설정들 추가
 */

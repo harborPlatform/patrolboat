@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Test</title>
+  <title>Patrol boat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Material Design Lite -->
@@ -18,11 +18,10 @@
   <nav class="f6 fw6 ttu tracked w-100">
     <a class="link tr dim white dib mr3" href="#" title="Home">Patrol boat</a>
 
-    <a class="link tr dim white dib mr3 blue" href="javascript:window.util.msg('msg')" >test msg</a>
-    <a class="link tr dim white dib mr3 red" href="javascript:window.util.alert('alert')">test alert</a>
+  
 
     <a class="link tr dim white dib mr3 red" href="javascript:$('#modal_popup').show();
-    $('#modal_popup_box').show()">test alert</a>
+    $('#modal_popup_box').show()">test send</a>
 
  <div class="v-top tr">
   <select class="v-top ">
@@ -36,12 +35,10 @@
 </header>
 
 
-<div class="container v-btm" id="wallets-card">
+<div class="container v-btm" id="wallets-card"></div>
+<input type="file" id="jsonfile"  onchange="window.pb.contract.loadJsonfile(event)" accept=".json" ><br>
 
-</div>
-
-
-<div class="container v-btm" id="contract-card">
+<div class="v-btm" id="contract-card">
 
 <!--   <div class=" w-30 ba b--black-20 bg-white shadow-1 ma3">
     <ul class="list pa3  mt0 ">
@@ -133,6 +130,7 @@
 
 
 
+    
 
 
 
