@@ -64,8 +64,36 @@ window.pb.provider = {
 };
 // 참고
 // https://ethereum.stackexchange.com/questions/31928/call-a-contract-with-web3js-ethereumjs-tx?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-
+window.pb.names = {
+  boys:['Noah', 'Liam', 'William', 'Mason', 'James', 'Benjamin', 'Jacob', 'Michael', 'Elijah', 'Ethan',
+    'Alexander', 'Oliver', 'Daniel', 'Lucas', 'Matthew', 'Aiden', 'Jackson', 'Logan', 'David', 'Joseph',
+    'Samuel', 'Henry', 'Owen', 'Sebastian', 'Gabriel', 'Carter', 'Jayden', 'John', 'Luke', 'Anthony', 'Isaac',
+    'Dylan', 'Wyatt', 'Andrew', 'Joshua', 'Christopher', 'Grayson', 'Jack', 'Julian', 'Ryan', 'Jaxon', 'Levi',
+    'Nathan', 'Caleb', 'Hunter', 'Christian', 'Isaiah', 'Thomas', 'Aaron', 'Lincoln', 'Charles', 'Eli', 'Landon',
+    'Connor', 'Josiah', 'Jonathan', 'Cameron', 'Jeremiah', 'Mateo', 'Adrian', 'Hudson', 'Robert', 'Nicholas', 'Brayden',
+    'Nolan', 'Easton', 'Jordan', 'Colton', 'Evan', 'Angel', 'Asher', 'Dominic', 'Austin', 'Leo', 'Adam', 'Jace', 'Jose',
+    'Ian', 'Cooper', 'Gavin', 'Carson', 'Jaxson', 'Theodore', 'Jason', 'Ezra', 'Chase', 'Parker', 'Xavier', 'Kevin',
+    'Tyler', 'Ayden', 'Elias', 'Bryson', 'Leonardo', 'Greyson', 'Sawyer', 'Roman', 'Brandon', 'Bentley', 'Kayden',
+    'Nathaniel', 'Vincent', 'Miles', 'Santiago', 'Harrison', 'Tristan', 'Declan', 'Cole', 'Maxwell', 'Luis', 'Justin',
+    'Everett', 'Micah', 'Axel', 'Wesley', 'Max', 'Silas', 'Weston', 'Ezekiel', 'Juan', 'Damian', 'Camden', 'George',
+    'Braxton', 'Blake', 'Jameson', 'Diego', 'Carlos', 'Ivan', 'Kingston'],
+  
+  girls:['Emma', 'Olivia', 'Ava', 'Sophia', 'Isabella', 'Mia', 'Charlotte', 'Abigail', 'Emily', 'Harper',
+    'Amelia', 'Evelyn', 'Elizabeth', 'Sofia', 'Madison', 'Avery', 'Ella', 'Scarlett', 'Grace', 'Chloe',
+    'Victoria', 'Riley', 'Aria', 'Lily', 'Aubrey', 'Zoey', 'Penelope', 'Lillian', 'Addison', 'Layla',
+    'Natalie', 'Camila', 'Hannah', 'Brooklyn', 'Zoe', 'Nora', 'Leah', 'Savannah', 'Audrey', 'Claire',
+    'Eleanor', 'Skylar', 'Ellie', 'Samantha', 'Stella', 'Paisley', 'Violet', 'Mila', 'Allison', 'Alexa',
+    'Anna', 'Hazel', 'Aaliyah', 'Ariana', 'Lucy', 'Caroline', 'Sarah', 'Genesis', 'Kennedy', 'Sadie',
+    'Gabriella', 'Madelyn', 'Adeline', 'Maya', 'Autumn', 'Aurora', 'Piper', 'Hailey', 'Arianna', 'Kaylee',
+    'Ruby', 'Serenity', 'Eva', 'Naomi', 'Nevaeh', 'Alice', 'Luna', 'Bella', 'Quinn', 'Lydia',
+    'Peyton', 'Melanie', 'Kylie', 'Aubree', 'Mackenzie', 'Kinsley', 'Cora', 'Julia', 'Taylor', 'Katherine',
+    'Madeline', 'Gianna', 'Eliana', 'Elena', 'Vivian', 'Willow', 'Reagan', 'Brianna', 'Clara', 'Faith', 'Ashley',
+    'Emilia', 'Isabelle', 'Annabelle', 'Rylee', 'Valentina', 'Everly', 'Hadley', 'Sophie', 'Alexandra',
+    'Natalia', 'Ivy', 'Maria', 'Josephine', 'Delilah', 'Bailey', 'Jade', 'Ximena', 'Alexis', 'Alyssa',
+    'Brielle', 'Jasmine', 'Liliana', 'Adalynn', 'Khloe', 'Isla', 'Mary', 'Andrea', 'Kayla', 'Emery']
+};
 window.pb.wallet = {
+  state:'default',
   list:[],
   pushWallet:function (addr) {
     var item = {};
@@ -74,26 +102,33 @@ window.pb.wallet = {
     item.info.address = addr.toString();
     item.info.balance = this.refreshBalance(addr);
     item.info.erc20 = [];
-    item.view.name = window.pb.wallet.list.length;
+    item.view.num = this.list.length;
     var avatar = this.popAvata();
     item.view.avatar = avatar.path;
     item.view.gender = avatar.gender;
     item.view.num = avatar.num;
-    window.pb.wallet.list.push(item);
+    item.view.name = avatar.name;
+    this.list.push(item);
   },
   loadDefault:function () {
     var acs = window.web3.eth.accounts;
     for (var i = 0; i < acs.length; i++) {
       this.pushWallet(acs[i]);
     }
-    // window.pb.wallet.list = window.web3.eth.accounts;
-    // console.log(window.pb.wallet.list)
+    var example1 = new Vue({
+      el: '#wallets-card',
+      data: window.pb.wallet
+    });
+    new SimpleBar(document.getElementById('sideWallets'), {
+      autoHide: true
+    }) 
+
   },
   getPrivateKey:function () {
 
   },
   refreshBalance:function (addr) {
-    return window.web3.fromWei(window.web3.eth.getBalance(addr), 'ether');
+    return window.web3.fromWei(window.web3.eth.getBalance(addr), 'ether');;
   },
   refreshAllBalance:function () {
 
@@ -106,16 +141,17 @@ window.pb.wallet = {
       num = window.util.getRandomInt(1, 129);
       avatar.gender = gender;
       avatar.num = num;
+      avatar.name = window.pb.names.boys[num];
       avatar.path = 'https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/male/' +
        num + '.png';
     } else {
       num = window.util.getRandomInt(1, 114);
       avatar.gender = gender;
       avatar.num = num;
+      avatar.name = window.pb.names.girls[num];
       avatar.path = 'https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/' +
        num + '.png';
     }
-
     return avatar;
   }
 };
@@ -265,21 +301,17 @@ window.pb.contract = {
       item.address = obj.address;
       item.info = runtimeContract;
       item.view = {};
-      console.log('push');
+      console.log('push item');
       window.pb.contract.list.push(item);
-      window.pb.uicontract.addContract(item);
+      // window.pb.uicontract.addContract(item);
+      pb.action.callAll();
     });
   },
   getContractByAddr:function (_addr) {
     var list = window.pb.contract.list;
-    console.log(list)
     for (var i = 0; i < list.length; i++) {
-      console.log(list[i].address, '"'+_addr+'"');
-       if(list[i].address === '"'+_addr+'"') {
-        console.log(list[i]);
+      if (list[i].address === _addr) {
         return list[i];
-       }else {
-        console.log('is not match ????');
        }
     }
   },

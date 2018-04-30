@@ -41,6 +41,7 @@
     "bn.js": "^4.11.8",
     "ethereumjs-tx": "^1.3.4",
     "jsonwatch": "^1.1.0",
+    "simplebar": "^2.6.1",
     "toastify-js": "^1.2.0",
     "truffle-contract": "^3.0.5"
   }

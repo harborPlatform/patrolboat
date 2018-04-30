@@ -5,21 +5,123 @@
   <title>Patrol boat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Material Design Lite -->
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-  <!-- Material Design icon font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
+
 </head>
 <body class="bg-washed-blue">
-<header class="bg-green  w-100 ph3 pv2 mb3 ">
+
+<div id="sideWallets" class="sidewalletnav">
+  <span class="f3 gray" style=" position: absolute;top: 25px; left: 25px;">
+    <i class="far fa-address-card hover-white"></i>
+    <i class="far fa-user-circle hover-white"></i>
+    <i class="fas fa-hashtag hover-white"></i></span>
+    <input type="text" name="findwallet">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<ul id="wallets-card" class="pl0 pr0 mw6" style="width:100;height:500;overflow-y: auto;">
+<!-- item name type -->
+  <li v-for="item in list" class="pt3 ">
+    <div v-if="state === 'name'" class=" center bg-white br3  pt-ns mv3 ba b--black-10 gray">
+    <div class="dt w-100">
+      <div id="copyBtn" v-on:click="util.copyToClipboard(item.info.address)" class="dtc tl" >
+          <i class="far fa-clone" ></i>
+      </div>
+      <div class="dtc tr">
+          <i class="fas fa-cog"></i>
+      </div>
+    </div>
+    <div class="tc">
+      <h1 class="f4 fw4  tr">{{ item.view.name }}</h1>
+      <h2 class="f6 fw4 gray mt0 tr">{{item.info.balance.toNumber()}}</h2>
+    </div>
+    <div class="dt w-100 bt b--black-10 gray">
+        <span class="dtc tl f7"> 
+          TOK
+        </span>
+        <span class="dtc lh-copy tr f7" >
+          1,320.123
+        </span> 
+      </div>
+    </div>
+<!-- item face type -->
+  <div v-if="state === 'face'" class="mw4 center bg-white br3  pa3-ns mv3 ba b--black-10">
+    <div class="dt w-100">
+      <div id="copyBtn" v-on:click="util.copyToClipboard(item.info.address)" class="dtc tl" >
+          <i class="far fa-clone" ></i>
+      </div>
+      <div class="dtc tr">
+          <i class="fas fa-cog"></i>
+      </div>
+    </div>
+    <div class="tc">
+      <img v-bind:src="item.view.avatar" class="br-100  dib ba b--black-05 pa1" title="Photo of a kitty staring at you">
+      <h2 class="f6 fw4 gray mt0 tr">{{item.info.balance.toNumber()}}</h2>
+    </div>
+    <div class="dt w-100 bt b--black-10 gray">
+        <span class="dtc tl f7"> 
+          TOK
+        </span>
+        <span class="dtc lh-copy tr f7" >
+          1,320.123
+        </span> 
+      </div>
+  </div>
+<!-- item default type -->
+  <div v-if="state === 'default'" class="mw6 center bg-white br3 pa2  ba b--black-10" style="width:360px">
+    <div class="cf">
+      <div class="w-100 pt1 pb2 tr gray">
+        <span id="copyBtn" v-on:click="util.copyToClipboard(item.info.address)" >
+          <i class="far fa-clone" ></i>
+        </span>
+        <span class="f7-l pa2" id="acount-address" >
+          {{item.info.address}}
+        </span>
+        <span>
+          <i class="fas fa-cog"></i>
+        </span>
+      </div>
+
+        <div class="fl w-100 pt2">
+        <div class="fl w-50 flex-auto" onclick="window.action.touch()">
+            <img v-bind:src="item.view.avatar" class="br-100  ba b--black-05 center">
+        </div>
+        <div class="fl w-50 pr2 tr v-btm">
+          <span class="f4 db gray"></span>
+          <span class="f3 db h4">{{ item.info.balance.toNumber() }}</span>
+        </div>
+      </div>
+
+      <div class="fl w-100 tr pb2 dt"> 
+        <div class="tc dtc w-50 f7">
+          {{ item.view.name }}
+        </div>
+        <div class="dtc w-50">
+          <a class="f7 link br3 ba ph2 pv1 dib blue hover-white bg-animate hover-bg-blue">send</a>
+          <a class="f7 link br3 ba ph2 pv1 dib blue hover-white bg-animate hover-bg-blue">call</a>
+          <a class="f7 link br3 ba ph2 pv1 dib blue hover-white bg-animate hover-bg-blue">transaction</a>
+        </div>
+      </div>
+
+      <div class="dt w-100 bt b--black-10 gray">
+        <span class="dtc tl"> 
+          Test Token 
+        </span>
+        <span class="dtc lh-copy tr" >
+          1,320.123
+        </span> 
+      </div>
+    </div>
+  </div>
+  </li>
+</ul>
+</div>
+
+<div id="main">
+  <header class="bg-green  w-100 ph3 pv2 mb3 ">
   <nav class="f6 fw6 ttu tracked w-100">
     <a class="link tr dim white dib mr3" href="#" title="Home">Patrol boat</a>
-
   
-
     <a class="link tr dim white dib mr3 red" href="javascript:$('#modal_popup').show();
     $('#modal_popup_box').show()">test send</a>
 
@@ -33,124 +135,81 @@
  </div>
 </nav>
 </header>
-
-
-<div class="container v-btm" id="wallets-card"></div>
-<input type="file" id="jsonfile"  onchange="window.pb.contract.loadJsonfile(event)" accept=".json" ><br>
-
-<div class="v-btm" id="contract-card">
-
-<!--   <div class=" w-30 ba b--black-20 bg-white shadow-1 ma3">
-    <ul class="list pa3  mt0 ">
-      <li class="flex items-center lh-copy tc bb b--black-10">
-          <div class="tc flex-auto">
-            <div><span class="f2 lh-title">ContractName </span><i class="fas fa-sync-alt"></i></div>
-            <div>
-            <span class="f7 blue tl">0x31CBAD1832f2fF60D0548Cdd1BA2cF9d0E5608bB</span>
-          </div>
-          </div>
-      </li>
-      <li class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
-          <div class="pl3 flex-auto">
-            <span class="f3 db black-70">supply</span>
-            <span class="f6 db black-70">function</span>
-          </div>
-          <div>
-            <span href="tel:" class="f6 link blue">30</span>
-          </div>
-      </li>
-    </ul>
-  </div> -->
-
-</div>
-
-<div id="modal_popup" class="bg-moon-gray" style="display:none;position:fixed;z-index: 1;left: 0;top: 0;width: 100%;height: 100%;background-color: rgb(0,0,0); background-color:rgba(0,0,0,0.5);">
-<!-- <div id="modal_popup_box" class="db center mw6  br4 mv4 bg-white shadow-5" style="display:none;" > -->
-  <!-- <div id="modal_content" class="pa1 p4 pv w-100 center tc"> -->
-    <div class="measure center  ba b--black bg-white shadow-5">
-  <ul class="list pa3  mt0 ">
-    <li
-      class="flex items-center lh-copy tc bb b--black-10">
-        <div class="tc flex-auto">
-          <!-- <span class="f2 db black-70">Send Ether</span> -->
-          <h1 class=" lh-title">Send</h1> 
-          <!-- <h1 class="f6 f-subheadline-l fw6 tc">Send ether</h1> -->
-        </div>
-    </li>
-    <li
-      class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
-        <div class="pl3 flex-auto">
-          <span class="f3 db black-70">To</span>
-          <span class="f6 db black-70">address</span>
-        </div>
-        <div>
-          <span href="tel:" class="f6 link blue hover-dark-gray" id ="sendethid">0x31CBAD1832f2fF60D0548Cdd1BA2cF9d0E5608bB</span>
-        </div>
-    </li>
-    <li
-      class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
-        <div class="pl3 flex-auto">
-          <span class="f4 db black-70">Ether</span>
-          <span class="f6 db black-70"></span>
-        </div>
-        <div>
-          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_ether" value="1" id="send_ether">
-        </div>
-    </li>
-    <li
-      class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
-        <div class="pl3 flex-auto">
-          <span class="f4 db black-70">Gas price</span>
-          <span class="f6 db black-30"></span>
-        </div>
-        <div>
-          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_gasprice" value="2000" id="send_gasprice">
-        </div>
-    </li>
-    <li
-      class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
-        <div class="pl3 flex-auto">
-          <span class="f4 db black-70">Gas Limit</span>
-          <span class="f6 db black-30"></span>
-        </div>
-        <div>
-          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_gaslimit" value="30000"  id="send_gaslimit">
-        </div>
-    </li>
-  </ul>
-  <div class="ma3">
-    <span class="w-100 tr">
-      <input class="tl b ph3 pv2 input-reset ba b--gray gray bg-transparent grow pointer f6" type="submit" value="Code Info"  onclick="$('#codeinfo').show();">
-
-      <input class="tr b ph3 pv2 input-reset ba b--blue blue bg-transparent grow pointer f6" type="submit" value="send" onclick="javascript:window.action.sendtransaction();$('#modal_popup').hide();$('#modal_popup_box').hide();">
-      <input class="tr b ph3 pv2 input-reset ba b--red red bg-transparent grow pointer  f6" onclick="$('#modal_popup').hide();$('#modal_popup_box').hide();" type="submit"  value="close">
-    </span>
+  <div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <input type="file" id="jsonfile"  onchange="window.pb.contract.loadJsonfile(event)" accept=".json" >
   </div>
-    <div id="codeinfo" style="display:none;">
-    <textarea id="codeinfo_sample"  class="w-100 hide"></textarea>
-    </div>
+
+
+<div id="contract-containner" class="list w-100 pa0 ba b--black-20">
+  <div class="content">
+    <ul v-for="item in list" class="list fl wm4 pa3 ma3 bg-white shadow-1">
+      
+      <li class="flex items-center lh-copy tc bb b--black-10">
+           <div class="tc flex-auto">
+             <div><span class="f3 lh-title">{{item.name}}</span><i class="fas fa-sync-alt"></i></div>
+             <div>
+             <span class="f7 blue tl"> {{item.address}} </span>
+           </div>
+           </div>
+       </li>
+      <ul v-for="abi in item.info.abi">
+        <li class="flex items-center lh-copy  ph0-l bb b--black-10" v-bind:id="abi.name" data-abi="" >
+              <div class="pl3 flex-auto">
+                <span v-if="(abi.name =='undefined' || abi.name ==''|| abi.name == null)" class="f4 db black-70"> 
+                  <i class="fas fa-home"></i>
+                </span>
+
+                <span v-else class="f4 db black-70">{{abi.name}}</span>
+                <div class="tooltip f6 db black-70 tc"> <i v-if="abi.payable" class="fas fa-dollar-sign green"></i> <span class="tooltiptext">payable</span> </div>
+              </div>
+              <div>
+                <div v-if="(abi.constant === true || abi.stateMutability === 'view')"> 
+                  <div v-if="abi.inputs.length === 0">
+                    <span class="f6 link green" v-bind:id="'def_'+item.address+'_'+abi.name" >value</span>
+                    <span class="f6 link green" v-on:click="pb.uicontract.sendcall(item.info, abi.name, event.target);" >call</span>
+                     <script type="text/javascript">
+                      </script>
+                  </div>
+                  <div v-else>
+                    <span class="f6 link red" v-on:click="alert('parameter')">exec call</span>
+                  </div>
+                </div>
+                <div v-else-if="abi.type == 'event'">
+                  <span class="f6 link black">event</span>
+                </div>
+                <div v-else>
+                  <span class="f6 link blue" >{{abi.type}} // {{abi.stateMutability}}</span>
+                  <span class="f6 link blue" onclick="pb.uicontract.sendtransaction()">sendTransaction</span>
+                </div> 
+
+                
+              </div>
+          </li>
+      </ul>
+    </ul>
+  </div>
 </div>
-  
-  <!-- </div> -->
-  <!-- </div> -->
-</div>
-
-
-
-    
-
-
-
 
   <!-- jQuery-->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
- <!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  --> <!-- Material Design Lite -->
-  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.js"></script>
   <script src="./app.js"></script>
 
+  <script>
+function openNav() {
+  document.getElementById("sideWallets").style.width = "450px";
+  document.getElementById("main").style.marginLeft = "450px";
+    
+}
+
+function closeNav() {
+  document.getElementById("sideWallets").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+}
+</script>
 
 </body>
 </html>
+

@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Patrol boat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Material Design Lite -->
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <!-- Material Design icon font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
+
+</head>
+<body class="bg-washed-blue">
+<header class="bg-green  w-100 ph3 pv2 mb3 ">
+  <nav class="f6 fw6 ttu tracked w-100">
+    <a class="link tr dim white dib mr3" href="#" title="Home">Patrol boat</a>
+
+  
+
+    <a class="link tr dim white dib mr3 red" href="javascript:$('#modal_popup').show();
+    $('#modal_popup_box').show()">test send</a>
+
+ <div class="v-top tr">
+  <select class="v-top ">
+  <option value="local">local network</option>
+  <option value="mainnet">mainnet network</option>
+  <option value="ropsten">ropsten network</option>
+  <option value="custom">custom</option>
+</select>
+ </div>
+</nav>
+</header>
+
+
+
+<div class="demo-card-wide mdl-card mdl-shadow--2dp" >
+<div class="inner-container">
+  <div class="inner-container-layout" id="copyBtn" onclick="util.copyToClipboard(\'' + wallets[i].info.address +'\')" style="font-size:1em; color:gray; padding:15px 5px 2px 13px;">
+    <i class="far fa-clone" ></i>
+  </div>
+  <div class="inner-container-layout mdl-card__supporting-text" id="acount-address" style="width:85%; padding:15px 0px 2px 0px;" >
+    ' + wallets[i].info.address + '
+  </div>
+  <div class="inner-container-layout" style="font-size:1em; color:gray; padding:5px 5px 2px 0px;">
+    <i class="fas fa-cog"></i>
+  </div>
+<div class="inner-container">
+  <div class="inner-container-layout mdl-card__supporting-text" style="width:50%; padding-top:0px; padding-bottom:0px" onclick="window.action.touch(\'' + wallets[i].info.address +'\')">
+    <img src=' + wallets[i].view.avatar + ' class="br-100 h4 w4 dib ba b--black-05 pa0">
+  </div>
+  <div class="inner-container-layout mdl-card__supporting-text" style="width:32%;">
+    <h4>' + wallets[i].info.balance.toNumber(); + '</h4>
+  </div>
+</div>
+<div class="inner-container" style="height:35px">
+  <div class="button-align">
+    <div class="inner-container-layout">
+      <button class="f6 link dim br3 ba ph3 pv2 mb2 dib navy" style="margin-right:10px;" onclick="window.action.allocateSend(\'' + wallets[i].info.address +'\')" >
+        send
+      </button>
+    </div>
+    <div class="inner-container-layout">
+      <button class="f6 link dim br3 ba ph3 pv2 mb2 dib navy" style="margin-right:10px;">
+        call
+      </button>
+    </div>
+    <div class="inner-container-layout">
+      <button class="f6 link dim br3 ba ph3 pv2 mb2 dib navy" style="margin-right:10px;">
+        sendTransaction
+      </button>
+    </div>
+  </div>
+</div>
+<div class="inner-container" style="border-top:1px solid rgba(0,0,0,.1); height:40px">
+    <div class="inner-container-layout mdl-card__supporting-text" style="width:50%; padding:10px 0px 0px 10px; ">
+      <font size="2">Test Token </font>
+    </div>
+    <div class="inner-container-layout mdl-card__supporting-text" style="padding:10px 0px 0px 10px;">
+      <font size="3"> 1,320.123545 </font>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="container v-btm" id="wallets-card"></div>
+<input type="file" id="jsonfile"  onchange="window.pb.contract.loadJsonfile(event)" accept=".json" ><br>
+
+<div class="v-btm" id="contract-card">
+
+<!--   <div class=" w-30 ba b--black-20 bg-white shadow-1 ma3">
+    <ul class="list pa3  mt0 ">
+      <li class="flex items-center lh-copy tc bb b--black-10">
+          <div class="tc flex-auto">
+            <div><span class="f2 lh-title">ContractName </span><i class="fas fa-sync-alt"></i></div>
+            <div>
+            <span class="f7 blue tl">0x31CBAD1832f2fF60D0548Cdd1BA2cF9d0E5608bB</span>
+          </div>
+          </div>
+      </li>
+      <li class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
+          <div class="pl3 flex-auto">
+            <span class="f3 db black-70">supply</span>
+            <span class="f6 db black-70">function</span>
+          </div>
+          <div>
+            <span href="tel:" class="f6 link blue">30</span>
+          </div>
+      </li>
+    </ul>
+  </div> -->
+
+</div>
+
+<div id="modal_popup" class="bg-moon-gray" style="display:none;position:fixed;z-index: 1;left: 0;top: 0;width: 100%;height: 100%;background-color: rgb(0,0,0); background-color:rgba(0,0,0,0.5);">
+<!-- <div id="modal_popup_box" class="db center mw6  br4 mv4 bg-white shadow-5" style="display:none;" > -->
+  <!-- <div id="modal_content" class="pa1 p4 pv w-100 center tc"> -->
+    <div class="measure center  ba b--black bg-white shadow-5">
+  <ul class="list pa3  mt0 ">
+    <li
+      class="flex items-center lh-copy tc bb b--black-10">
+        <div class="tc flex-auto">
+          <!-- <span class="f2 db black-70">Send Ether</span> -->
+          <h1 class=" lh-title">Send</h1> 
+          <!-- <h1 class="f6 f-subheadline-l fw6 tc">Send ether</h1> -->
+        </div>
+    </li>
+    <li
+      class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
+        <div class="pl3 flex-auto">
+          <span class="f3 db black-70">To</span>
+          <span class="f6 db black-70">address</span>
+        </div>
+        <div>
+          <span href="tel:" class="f6 link blue hover-dark-gray" id ="sendethid">0x31CBAD1832f2fF60D0548Cdd1BA2cF9d0E5608bB</span>
+        </div>
+    </li>
+    <li
+      class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
+        <div class="pl3 flex-auto">
+          <span class="f4 db black-70">Ether</span>
+          <span class="f6 db black-70"></span>
+        </div>
+        <div>
+          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_ether" value="1" id="send_ether">
+        </div>
+    </li>
+    <li
+      class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
+        <div class="pl3 flex-auto">
+          <span class="f4 db black-70">Gas price</span>
+          <span class="f6 db black-30"></span>
+        </div>
+        <div>
+          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_gasprice" value="2000" id="send_gasprice">
+        </div>
+    </li>
+    <li
+      class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
+        <div class="pl3 flex-auto">
+          <span class="f4 db black-70">Gas Limit</span>
+          <span class="f6 db black-30"></span>
+        </div>
+        <div>
+          <input class="pa2 input-reset ba b--black-90 bg-transparent w-100 measure" type="number" name="send_gaslimit" value="30000"  id="send_gaslimit">
+        </div>
+    </li>
+  </ul>
+  <div class="ma3">
+    <span class="w-100 tr">
+      <input class="tl b ph3 pv2 input-reset ba b--gray gray bg-transparent grow pointer f6" type="submit" value="Code Info"  onclick="$('#codeinfo').show();">
+
+      <input class="tr b ph3 pv2 input-reset ba b--blue blue bg-transparent grow pointer f6" type="submit" value="send" onclick="javascript:window.action.sendtransaction();$('#modal_popup').hide();$('#modal_popup_box').hide();">
+      <input class="tr b ph3 pv2 input-reset ba b--red red bg-transparent grow pointer  f6" onclick="$('#modal_popup').hide();$('#modal_popup_box').hide();" type="submit"  value="close">
+    </span>
+  </div>
+    <div id="codeinfo" style="display:none;">
+    <textarea id="codeinfo_sample"  class="w-100 hide"></textarea>
+    </div>
+</div>
+  
+  <!-- </div> -->
+  <!-- </div> -->
+</div>
+
+
+
+    
+
+
+
+
+  <!-- jQuery-->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+ <!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  --> <!-- Material Design Lite -->
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.js"></script>
+  <script src="./app.js"></script>
+
+
+</body>
+</html>

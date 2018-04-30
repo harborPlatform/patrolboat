@@ -69,4 +69,11 @@ window.account = {
 
  // window.account.clearWallet();
 
-setTimeout(function () { window.account.init(); }, 2000);
+setTimeout(function () { 
+  window.account.init();
+  new SimpleBar(document.getElementById('wallets-card'), {
+   autoHide: true
+ }) 
+}, 2000);
+
+

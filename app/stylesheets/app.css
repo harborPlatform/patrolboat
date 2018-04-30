@@ -1,55 +1,90 @@
 
-.demo-card-wide.mdl-card {
-  width: 400px;
-  //float:left;
-  margin-left:15px;
 
-  display: inline-block; /*Display inline and maintain block characteristics.*/
-  vertical-align: top; /*Makes sure all the divs are correctly aligned.*/
-  white-space: normal; /*Prevents child elements from inheriting nowrap.*/
-}
-.demo-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 176px;
-  background: url('https://getmdl.io/assets/demos/welcome_card.jpg') center / cover;
-}
-.demo-card-wide > .mdl-card__menu {
-  color: #fff;
+body {
+    font-family: "Lato", sans-serif;
 }
 
-
-.pic-card
-{
-  height: 176px;
-  background: url('https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/10.png') center / cover;
+.sidewalletnav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #001b44;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
 }
 
-.container
-{
-    white-space: nowrap; /*Prevents Wrapping*/
-    
-    width: 1500px;
-    height: 250px;
-    overflow-x: scroll;
-    overflow-y: hidden;
+.sidewalletnav .closebtn {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
 
-.inner-container
-{
-    white-space: nowrap;
+.sidewalletnav .closebtn:hover {
+    color: #f1f1f1;
 }
 
-.inner-container .inner-container-layout
-{
-  display: inline-block; /*Display inline and maintain block characteristics.*/
-  vertical-align: top; /*Makes sure all the divs are correctly aligned.*/
-  white-space: normal; /*Prevents child elements from inheriting nowrap.*/
+.sidewalletnav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
-.button-align
-{
-  float:right;
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+/*
+@media screen and (max-height: 450px) {
+  .sidewalletnav {padding-top: 15px;}
+  .sidewalletnav a {font-size: 18px;}
+}*/
+
+
+/*tootlp*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
 }
 
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
 
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
 
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

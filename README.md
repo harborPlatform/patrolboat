@@ -19,3 +19,30 @@ Smart contract testing is difficult and takes too much time.
 * It is practical as a test tool.
 * Reduce development and testing time for Smart Contract and dapp
 
+
+- avatar
+//https://github.com/Ashwinvalento/cartoon-avatar
+ * MALE : 1 - 129 * FEMALE : 1 - 114
+ example
+ https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/male/45.png
+
+- ICON 
+https://fontawesome.com/
+
+- wallet structure
+  <데이터 영역>
+   지갑주소: 고유식별자
+   금액: Eth 잔액
+   EthRC20:배열 데이터
+  <View영역>
+   별칭:임이의 이름
+   아바타: 별칭 이미지이며, 임이의 이미지
+   아바타성별
+   아바타 번호
+
+- contract structure
+  <데이터 영역>
+    address : 배포된 주소
+    info : 실행 가능한 contract 객체
+  <View영역>
+   view : UI관련 설정들 추가

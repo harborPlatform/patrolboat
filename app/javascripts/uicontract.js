@@ -12,16 +12,39 @@ window.pb.uicontract = {
   reloadContract:function () {
     this.clearContract();
     this.init();
+  },sendcall:function (_obj, _func, _ctrl) {
+    console.log(_obj);
+    _obj[_func](function(err,result){
+      util.alert(result);
+      _ctrl.innerHTML = result;
+      console.log(_ctrl);
+    });
   },
   refreshContract:function () {
     console.log('cnt:', window.pb.contract.list.length);
-    var container = '  <div id ="contract-card-containner" class="list w-100 ba b--black-20  ">';
-    container = container + this.addAllContract();
-    container = container + '  </div>';
-    container = container + '';
-    var e = document.createElement('span');
-    e.innerHTML = container;
-    document.getElementById('contract-card').appendChild(e);
+    
+    new Vue({
+      el: '#contract-containner',
+      data: window.pb.contract,
+      computed: {
+    // 계산된 getter
+        checkCallable: function (_constant, _stateMutability) {
+          if (_constant === true || _stateMutability === 'view') {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      },
+      created: function () {
+      }
+    });
+
+    new SimpleBar(document.getElementById('contract-containner'), {
+      autoHide: true
+    });
+
+
   },
   addContract:function (_contract) {
     var c = this.bindTable(_contract);
