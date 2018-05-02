@@ -3,6 +3,13 @@
 body {
     font-family: "Lato", sans-serif;
 }
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+.f7 { font-size: .755rem; }
+.f8 { font-size: .525rem; }
+.f9 { font-size: .475rem; }
 
 .sidewalletnav {
     height: 100%;
@@ -18,7 +25,7 @@ body {
 }
 
 .sidewalletnav .closebtn {
-    padding: 8px 8px 8px 32px;
+    padding: 18px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;

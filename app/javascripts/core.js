@@ -94,13 +94,33 @@ window.pb.names = {
 };
 window.pb.wallet = {
   state:'default',
+  base:'',
+  argfilter:'',
   list:[],
-  pushWallet:function (addr) {
+  selected:function (_addr) {
+    this.base = _addr;
+    // util.msg('chagne base to:'+_addr);
+    var item = this.getWalletByAddr(_addr);
+    var img = document.getElementById('selected_base');
+    var tooltip = document.getElementById('selected_base_tooltip');
+    $('#selected_wallet').show();
+    img.src = item.view.avatar;
+    tooltip.innerHTML = _addr.substring(0, 8) + ' ...';
+  },
+  getWalletByAddr:function (_addr) {
+    for (var i = 0; i < pb.wallet.list.length; i++) {
+      var item = pb.wallet.list[i];
+      if(item.info.address === _addr){
+        return item;
+      }
+    }
+  },
+  pushWallet:function (_addr) {
     var item = {};
     item.info = {};
     item.view = {};
-    item.info.address = addr.toString();
-    item.info.balance = this.refreshBalance(addr);
+    item.info.address = _addr.toString();
+    item.info.balance = this.refreshBalance(_addr);
     item.info.erc20 = [];
     item.view.num = this.list.length;
     var avatar = this.popAvata();
@@ -115,13 +135,39 @@ window.pb.wallet = {
     for (var i = 0; i < acs.length; i++) {
       this.pushWallet(acs[i]);
     }
-    var example1 = new Vue({
-      el: '#wallets-card',
-      data: window.pb.wallet
+    var uiwallet = new Vue({
+      el: '#sideWallets',
+      data: window.pb.wallet,
+      computed: {
+        filteredWallets () {
+          var uiwallet = this;
+          var arg = uiwallet.argfilter;
+          if (arg.replace(/\s/g, '') === '' || arg === 'undefined') {
+            return pb.wallet.list;
+          } else {
+            return pb.wallet.list.filter(function (item) {
+              return (item.view.name.toLowerCase().includes(arg.toLowerCase()) || item.info.address.toLowerCase().includes(arg.toLowerCase()));
+            });
+          }
+        }
+      },
+      methods: {
+        changeType (_type) {
+          pb.wallet.state = _type;
+          if (_type === 'default') {
+              // $('#sideWallets').css('width', '450');
+              document.getElementById('sideWallets').style.width = '450px';
+              document.getElementById('main').style.marginLeft = '450px';
+          } else {
+              document.getElementById('sideWallets').style.width = '200px';
+              document.getElementById('main').style.marginLeft = '200px';
+          }
+        }
+      }
     });
     new SimpleBar(document.getElementById('sideWallets'), {
       autoHide: true
-    }) 
+    });
 
   },
   getPrivateKey:function () {
@@ -294,17 +340,24 @@ window.pb.contract = {
     rappedContract.setProvider(window.web3.currentProvider);
     var abi = JSON.parse(JSON.stringify(rappedContract)).abi;
     var structureContract = window.web3.eth.contract(abi);
+    var isDeployed = rappedContract.deployed();
     rappedContract.deployed().then(function (obj, err) {
-      var runtimeContract = structureContract.at(obj.address);
-      var item = {};
-      item.name = rappedContract.contractName;
-      item.address = obj.address;
-      item.info = runtimeContract;
-      item.view = {};
-      console.log('push item');
-      window.pb.contract.list.push(item);
+      if (err) {
+          util.alert('contract is not deployed');
+      } else {
+        var runtimeContract = structureContract.at(obj.address);
+        var item = {};
+        item.name = rappedContract.contractName;
+        item.address = obj.address;
+        item.info = runtimeContract;
+        item.view = {};
+        console.log('push item');
+        window.pb.contract.list.push(item);
+      }
+      
       // window.pb.uicontract.addContract(item);
-      pb.action.callAll();
+      
+      setTimeout(function () {pb.action.callAll();}, 1000);
     });
   },
   getContractByAddr:function (_addr) {

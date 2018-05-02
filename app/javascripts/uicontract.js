@@ -16,8 +16,10 @@ window.pb.uicontract = {
     console.log(_obj);
     _obj[_func](function(err,result){
       util.alert(result);
-      _ctrl.innerHTML = result;
-      console.log(_ctrl);
+      // _ctrl.innerHTML = result;
+      var id = 'def_' + _obj.address + '_' + _func;
+      document.getElementById(id).innerHTML = result;;
+
     });
   },
   refreshContract:function () {
@@ -63,8 +65,7 @@ window.pb.uicontract = {
   },
   sendtransaction:function (_addr, _func) {
     util.msg( _addr + '//' + _func);
-    var obj = window.pb.contract.getContractByAddr(_addr);
-    console.log(obj);
+    var obj = pb.contract.getContractByAddr(_addr);
     var abi = obj.info.abi;
     var inputs;
     for (var i = 0; i < abi.length; i++) {
@@ -134,4 +135,4 @@ window.pb.uicontract = {
   }
 };
 
-setTimeout(function () { window.pb.uicontract.init(); }, 2000);
+setTimeout(function () { window.pb.uicontract.init(); }, 1000);
