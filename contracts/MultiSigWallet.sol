@@ -301,7 +301,6 @@ contract MultiSigWallet {
         transactionCount += 1;
         Submission(transactionId);
     }
-
     /*
      * Web3 call functions
      */

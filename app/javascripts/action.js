@@ -1,17 +1,18 @@
 
 window.pb.act = {
   ds:{
-    show:true,
+    show:false,
     type:'',
     from:'0x77dbc562a055861af11e1c85d7723fe537a225c5',
     to:'0x77dbc562a055861af11e1c85d7723fe537a225c5',
-    ether_value:1,
-    gas_price:0,
-    gas_limit:0,
+    ether_value:10,
+    gas_price:2100,
+    gas_limit:20000,
     inputs:[],
     outputs:[],
     code:{},
-    target:{}
+    target:{},
+    func:''
   },
   init:function () {
     new Vue({
@@ -57,6 +58,7 @@ window.pb.act = {
     }
 
     this.ds.target = obj;
+    this.ds.func = _func;
     this.ds.inputs = inputs;
     this.ds.from = pb.wallet.base;
     this.ds.to = _to;
@@ -65,8 +67,45 @@ window.pb.act = {
 
   },
   send:function () {
+
+    console.log(this.ds.from, this.ds.to);
     console.log({ from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') });
-    // window.web3.eth.sendTransaction ({ from:this.from, to:this.to, value: window.web3.toWei(this.ether_value, 'ether') });
+    //window.web3.eth.sendTransaction ({ from:this.from, to:this.to, value: window.web3.toWei(this.ether_value, 'ether') });
+    // window.web3.eth.sendTransaction({from:this.from, to:this.to, value: window.web3.toWei(this.ether_value, 'ether')});
+    // console.log(this.ds);
+
+    web3.eth.sendTransaction({ from:this.ds.from, to:this.ds.to, value: web3.toWei(this.ds.ether_value, 'ether'), gasLimit:this.ds.gas_limit, gasPrice:this.ds.gas_price },
+     function (err, h) {
+      if(!err){
+        util.msg(h);
+      } else {
+        uint.alert(err);
+      }});
+
+    this.ds.show = false;
+
+
+  },
+  transaction:function (_to, _param) {
+    // console.log(_to, _param)
+
+    // var paramCnt = this.ds.inputs.length;
+    // var p = this.ds.inputs;
+    // console.log(p[0].pbvalue,p[1].pbvalue,{from:this.from, to:this.to, value: window.web3.toWei(this.ether_value, 'ether') })
+    // if(paramCnt == 0){
+    //   this.ds.target[this.ds.func].sendTransaction (p[0].pbvalue,{from:this.from, to:this.to, value: window.web3.toWei(this.ether_value, 'ether') });
+    // } else if (parameter === 1) {
+    //   this.ds.target[this.ds.func].sendTransaction (p[0].pbvalue,p[1].pbvalue,{from:this.from, to:this.to, value: window.web3.toWei(this.ether_value, 'ether') });
+    // } else if (parameter === 2) {
+    //   this.ds.target[this.ds.func].sendTransaction (p[0].pbvalue,p[1].pbvalue,p[2].pbvalue,{from:this.from, to:this.to, value: window.web3.toWei(this.ether_value, 'ether') });
+    // } else if (parameter === 3) {
+    //   this.ds.target[this.ds.func].sendTransaction (p[0].pbvalue,p[1].pbvalue,p[2].pbvalue,p[3].pbvalue,{from:this.from, to:this.to, value: window.web3.toWei(this.ether_value, 'ether') });
+    // } else if (parameter === 4) {
+    // } else if (parameter === 5) { 
+    // } else if (parameter === 6) { 
+    // } else {
+    //   util.alert('It is possible to support less than 6 parameters.')
+    // }
   }
 
 };

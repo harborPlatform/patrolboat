@@ -52,7 +52,12 @@ window.pb.contract = {
     info.sendTransaction();
     web3.eth.sendTransaction({ from:CurrentAddress, to:toAddr, value: web3.toWei(ethValue, 'ether'), gasLimit:gasLimit, gasPrice:gasPrice },
      function (err, h) {
+        if(!err){
+          Util.alert(err);
+        }else{
+          Util.msg(h);
 
+        }
      });
   },
   sendRawTransaction:function (toAddr,ethValue, fromPriv){

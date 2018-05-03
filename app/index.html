@@ -33,7 +33,7 @@
     </div>
     <div class="tc">
       <h1 class="f4 fw4 tr pr2" v-on:click="pb.wallet.selected(item.info.address)">{{ item.view.name }}</h1>
-      <h2 class="f6 fw4 gray mt0 tr pr2">{{item.info.balance.toNumber()}}</h2>
+      <h2 class="f7 fw4 gray mt0 tr pr2">{{item.info.balance.toNumber()}}</h2>
     </div>
     <div class="dt w-100 bt b--black-10 gray">
         <span class="dtc tl f7">
@@ -200,7 +200,7 @@
   <ul class="list pl2 pr2 mt0">
     <li class="flex items-center lh-copy tc bb b--black-10">
         <div class="tc flex-auto">
-          <h1 class=" lh-title">Send</h1> 
+          <h2 class=" lh-title">Send</h2> 
         </div>
     </li>
     <li class="mt2">
@@ -227,7 +227,7 @@
   <ul class="list pl2 pr2 mt0 bg-washed-yellow">
     <li class="mt2 bb b--black-10" v-for="param in inputs">
       <label class="db fw6 lh-copy f6" for="param">{{param.name}} <span class="normal black-60">({{param.type}})</span></label>
-      <input class="pa1 input-reset ba bg-transparent hover-bg-green hover-white w-100 tr pr3" type="number" name="param"  id="param" v-model="param.value" >
+      <input class="pa1 input-reset ba bg-transparent hover-bg-green hover-white w-100 tr pr3" type="text" name="param"  id="param" v-model="param.pbvalue" >
     </li>
   </ul>
   <div class="pa2 mb2">
@@ -235,6 +235,7 @@
       <span class="pa1 tl b input-reset ba b--gray gray bg-transparent grow pointer f6" onclick="$('#codeinfo').show();">Code Info</span>
 
       <span class="pa1 tr b input-reset ba b--blue blue bg-transparent grow pointer f6" v-on:click="pb.act.send();">send</span>
+      <span class="pa1 tr b input-reset ba b--blue blue bg-transparent grow pointer f6" v-on:click="pb.act.transaction();">transaction</span>
       <span class="pa1 tr b input-reset ba b--red red bg-transparent grow pointer f6" v-on:click="show=false">close</span>
     </span>
   </div>
