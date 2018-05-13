@@ -18,7 +18,7 @@
     <i v-on:click="changeType('name')" class="fas fa-hashtag hover-white"></i>
     <input type="text" v-model="argfilter" name="findwallet" class="input-reset f5 di auto w5 pl0 black-70 white bg-navy  ba b--gray" >
   </span>
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeWallet()">&times;</a>
 <ul id="wallets-card" class="pl0 pr0 mw6"  style="width:100;height:500;overflow-y: auto;">
 <!-- item name type -->
   <li v-for="item in filteredWallets" class="pt3 ">
@@ -126,6 +126,7 @@
     $('#modal_popup_box').show()">test send</a>
 
  <div class="v-top tr">
+  <span  onclick="openNetworks()">change Network</span>
   <select class="v-top ">
   <option value="local">local network</option>
   <option value="mainnet">mainnet network</option>
@@ -136,7 +137,7 @@
 </nav>
 </header>
   <div>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <span style="font-size:30px;cursor:pointer" onclick="openWallet()">&#9776;</span>
     <div id="selected_wallet"  class="tooltip f7 db black-70 tc" style="display:none">
       <img id="selected_base" src="" title="selected" class="br-100 w2 h2 dib ">
       <span id="selected_base_tooltip" class="tooltiptext"></span>
@@ -246,6 +247,18 @@
 </div>
 
 
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNetworks()">&times;</a>
+  <div class="overlay-content">
+    <a href="#">Local Network</a>
+    <a href="#">Main Net</a>
+    <a href="#">Test Net</a>
+    <a href="#">Custom</a>
+  </div>
+</div>
+
+
+
 
 
   <!-- jQuery-->
@@ -255,7 +268,7 @@
   <script src="./app.js"></script>
 
   <script>
-function openNav() {
+function openWallet() {
   if(pb.wallet.state === 'default' || pb.wallet.state === 'undefined'){
     document.getElementById('sideWallets').style.width = '450px';
     document.getElementById('main').style.marginLeft = '450px';
@@ -266,9 +279,17 @@ function openNav() {
   
 }
 
-function closeNav() {
+function closeWallet() {
   document.getElementById('sideWallets').style.width = '0';
     document.getElementById('main').style.marginLeft = '0';
+}
+
+function openNetworks() {
+    document.getElementById("myNav").style.height = "100%";
+}
+
+function closeNetworks() {
+    document.getElementById("myNav").style.height = "0%";
 }
 </script>
 

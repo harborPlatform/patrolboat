@@ -71,7 +71,7 @@ window.pb.act = {
         if (result) {
           console.log(result); 
           window.pb.act.ds.show = false;
-          reloadAll();
+          pb.act.reloadAll();
         } else {
           console.log(err);
         }
@@ -205,7 +205,7 @@ window.pb.act = {
   },
   txSuccess:function (hash, data) {
     console.log(hash);
-    this.reloadAll();
+    pb.act.reloadAll();
   },
   txFail:function (err, data) {},
   estimateContractgas:function () {

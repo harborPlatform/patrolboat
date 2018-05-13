@@ -171,6 +171,9 @@ window.pb.wallet = {
 
   },
   reloadAllbal:function() {
+    if(pb.wallet.list){
+
+    }
     for (var i = 0; i < pb.wallet.list.length; i++) {
       var item = pb.wallet.list[i];
       item.info.balance = this.refreshBalance(item.info.address);
@@ -379,10 +382,11 @@ window.pb.contract = {
 
   },
   reloadAllbal:function (){
-     for (var i = 0; i < pb.wallet.contract.length; i++) {
+      for (var i = 0; i < pb.contract.length; i++) {
       var item = pb.contract.list[i];
       item.info.balance = pb.wallet.refreshBalance(item.address);
     }
+     
   },
   send:function (to, from) {
 
