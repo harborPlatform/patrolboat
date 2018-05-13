@@ -11,7 +11,8 @@ window.pb.act = {
     inputs:[],
     outputs:[],
     code:{},
-    target:{}
+    target:{},
+    func:''
   },
   init:function () {
     new Vue({
