@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Patrol boat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
+
+</head>
+<body class="bg-washed-blue">
+<div id="sideWallets" class="sidewalletnav">
+  <span class="f3 gray" style="position: absolute;top: 25px; left: 15px;">
+    <i v-on:click="changeType('default')" class="far fa-address-card hover-white"></i>
+    <i v-on:click="changeType('face')" class="far fa-user-circle hover-white"></i>
+    <i v-on:click="changeType('name')" class="fas fa-hashtag hover-white"></i>
+    <input type="text" v-model="argfilter" name="findwallet" class="input-reset f5 di auto w5 pl0 black-70 white bg-navy  ba b--gray" >
+  </span>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<ul id="wallets-card" class="pl0 pr0 mw6"  style="width:100;height:500;overflow-y: auto;">
+<!-- item name type -->
+  <li v-for="item in filteredWallets" class="pt3 ">
+    <div v-if="state === 'name'" class="mw4 center bg-white br3  pt-ns mv3 ba b--black-10 gray">
+    <div class="dt w-100 pa2">
+      <div id="copyBtn" v-on:click="util.copyToClipboard(item.info.address)" class="dtc tl" >
+          <i class="far fa-clone" ></i>
+      </div>
+      <div class="dtc tr">
+          <i class="fas fa-cog"></i>
+      </div>
+    </div>
+    <div class="tc">
+      <h1 class="f4 fw4 tr pr2" v-on:click="pb.wallet.selected(item.info.address)">{{ item.view.name }}</h1>
+      <h2 class="f7 fw4 gray mt0 tr pr2">{{item.info.balance.toNumber()}}</h2>
+    </div>
+    <div class="dt w-100 bt b--black-10 gray">
+        <span class="dtc tl f7">
+          TOK
+        </span>
+        <span class="dtc lh-copy tr f7 pr2" >
+          1,320.123
+        </span>
+      </div>
+    </div>
+<!-- item face type -->
+  <div v-if="state === 'face'" class="mw4 center bg-white br3  pa3-ns mv3 ba b--black-10">
+    <div class="dt w-100">
+      <div id="copyBtn" v-on:click="util.copyToClipboard(item.info.address)" class="dtc tl" >
+          <i class="far fa-clone" ></i>
+      </div>
+      <div class="dtc tr">
+          <i class="fas fa-cog"></i>
+      </div>
+    </div>
+    <div class="tc">
+      <img v-bind:src="item.view.avatar" v-on:click="pb.wallet.selected(item.info.address)" class="br-100  dib ba b--black-05 pa1" title="avatar">
+      <h2 class="f6 fw4 gray mt0 tr">{{item.info.balance.toNumber()}}</h2>
+    </div>
+    <div class="dt w-100 bt b--black-10 gray">
+        <span class="dtc tl f7"> 
+          TOK
+        </span>
+        <span class="dtc lh-copy tr f7" >
+          1,320.123
+        </span>
+      </div>
+  </div>
+<!-- item default type -->
+  <div v-if="state === 'default'" class="mw6 center bg-white br3 pa2  ba b--black-10" style="width:360px">
+    <div class="cf">
+      <div class="w-100 pt1 pb2 tr gray">
+        <span id="copyBtn" v-on:click="util.copyToClipboard(item.info.address)" >
+          <i class="far fa-clone" ></i>
+        </span>
+        <span class="f7-l pa2" id="acount-address" >
+          {{item.info.address}}
+        </span>
+        <span>
+          <i class="fas fa-cog"></i>
+        </span>
+      </div>
+
+        <div class="fl w-100 pt2">
+        <div class="fl w-50 flex-auto" onclick="window.action.touch()">
+            <img v-bind:src="item.view.avatar" v-on:click="pb.wallet.selected(item.info.address)" class="br-100  ba b--black-05 center">
+        </div>
+        <div class="fl w-50 pr2 tr v-btm">
+          <span class="f4 db gray"></span>
+          <span class="f3 db h4">{{ item.info.balance.toNumber() }}</span>
+        </div>
+      </div>
+
+      <div class="fl w-100 tr pb2 dt"> 
+        <div class="tc dtc w-50 f7">
+          {{ item.view.name }}
+        </div>
+        <div class="dtc w-50 pr3">
+          <a class="f7 link br3 ba ph2 pv1 dib blue hover-white bg-animate hover-bg-blue" v-on:click="pb.act.send_open(item.info.address)" >send</a>
+          <!-- <a class="f7 link br3 ba ph2 pv1 dib blue hover-white bg-animate hover-bg-blue">call</a>
+          <a class="f7 link br3 ba ph2 pv1 dib blue hover-white bg-animate hover-bg-blue">transaction</a> -->
+        </div>
+      </div>
+
+      <div class="dt w-100 bt b--black-10 gray">
+        <span class="dtc tl"> 
+          Test Token 
+        </span>
+        <span class="dtc lh-copy tr" >
+          1,320.123
+        </span> 
+      </div>
+    </div>
+  </div>
+  </li>
+</ul>
+</div>
+
+<div id="main">
+  <header class="bg-green  w-100 ph3 pv2 mb3 ">
+  <nav class="f6 fw6 ttu tracked w-100">
+    <a class="link tr dim white dib mr3" href="#" title="Home">Patrol boat</a>
+  
+    <a class="link tr dim white dib mr3 red" href="javascript:$('#modal_popup').show();
+    $('#modal_popup_box').show()">test send</a>
+
+ <div class="v-top tr">
+  <select class="v-top ">
+  <option value="local">local network</option>
+  <option value="mainnet">mainnet network</option>
+  <option value="ropsten">ropsten network</option>
+  <option value="custom">custom</option>
+</select>
+ </div>
+</nav>
+</header>
+  <div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <div id="selected_wallet"  class="tooltip f7 db black-70 tc" style="display:none">
+      <img id="selected_base" src="" title="selected" class="br-100 w2 h2 dib ">
+      <span id="selected_base_tooltip" class="tooltiptext"></span>
+    </div>
+    
+    <input type="file" id="jsonfile"  onchange="window.pb.contract.loadJsonfile(event)" accept=".json" >
+
+  </div>
+<div id="contract-containner" class="list w-100 pa0 ba b--black-20">
+  <div class="content">
+    <ul v-for="item in list" class="list fl wm4 pa3 ma3 bg-white shadow-1">
+      
+      <li class="flex items-center lh-copy tc bb b--black-10">
+           <div class="tc flex-auto">
+             <div><span class="f3 lh-title">{{item.name}}</span><i class="fas fa-sync-alt"></i> </div>
+             <div>
+             <span class="f7 blue tl"> {{item.address}} </span>
+             <a class="f7 link br3 ba ph1 pv1 dib blue hover-white bg-animate hover-bg-blue" v-on:click="pb.act.send_open(item.address)">send</a>
+           </div>
+           </div>
+       </li>
+      <ul v-for="abi in item.info.abi">
+        <li class="flex items-center lh-copy  ph0-l bb b--black-10" v-bind:id="abi.name" data-abi="" >
+              <div class="pl0 flex-auto">
+                <span v-if="(abi.name =='undefined' || abi.name ==''|| abi.name == null)" class="f4 db black-70"> 
+                  <i class="fas fa-home"></i>
+                </span>
+
+                <!-- <span v-else class="f4 db black-70">{{abi.name}}</span> -->
+                 <label for="name" class="f6 b db mb2">{{abi.name}}
+                <div  class="tooltip f6 db black-70 tc"> <i v-if="abi.payable" class="fas fa-dollar-sign green"></i> <span class="tooltiptext">payable</span> </div>
+              </div></label>
+              <div id ="name">
+                <div v-if="(abi.constant === true || abi.stateMutability === 'view')"> 
+                  <div v-if="abi.inputs.length === 0">
+                    <span class="f6 link green" v-bind:id="'def_'+item.address+'_'+abi.name" >value</span>
+                    <span class="f8 link green pa1 ba b--green" v-on:click="pb.uicontract.sendcall(item.info, abi.name, event.target);" >call
+                    </span>
+                  </div>
+                  <div v-else>
+                    <span class="f6 link red" v-on:click="alert('parameter')">exec call</span>
+                  </div>
+                </div>
+                <div v-else-if="abi.type == 'event'">
+                  <span class="f8 link black">event</span>
+                </div>
+                <div v-else>
+                  <span class="f6 link blue" ></span>
+                  <span class="f8 link blue pa1 ba b--blue" v-on:click="pb.act.transaction_open(item.address, abi.name);" >transaction</span>
+                </div> 
+              </div>
+          </li>
+      </ul>
+    </ul>
+  </div>
+</div>
+
+<!-- display:none -->
+<div id="action_popup" v-if="show" class="bg-moon-gray" style=";position:fixed;z-index: 1;left: 0;top: 0;width: 100%;height: 100%;background-color: rgb(0,0,0); background-color:rgba(0,0,0,0.5);">
+  <div class="w5 center mt4 ba b--black bg-white shadow-5">
+  <ul class="list pl2 pr2 mt0">
+    <li class="flex items-center lh-copy tc bb b--black-10">
+        <div class="tc flex-auto">
+          <h2 class=" lh-title">Send</h2> 
+        </div>
+    </li>
+    <li class="mt2">
+        <label class="db fw6 lh-copy f6" for="send_addr">from</label>
+        <span  class="f8 link blue hover-dark-gray" id ="send_addr">{{from}}</span>
+    </li>
+    <li class="mt2">
+        <label class="db fw6 lh-copy f6" for="send_addr">to</label>
+        <span  class="f8 link blue hover-dark-gray" id ="send_addr">{{to}}</span>
+    </li>
+    <li v-if="pb.act.ds.type==='transaction' || pb.act.ds.type==='send'" class="mt2 bb b--black-10">
+        <label class="db fw6 lh-copy f6" for="ether_value">Ether</label>
+        <input class="pa1 input-reset ba bg-transparent hover-bg-green hover-white w-100 tr" type="number" name="ether_value"  id="ether_value" v-model="ether_value">
+    </li>
+    <li v-if="pb.act.ds.type==='transaction' || pb.act.ds.type==='send'" class="mt2 bb b--black-10">
+      <label class="db fw6 lh-copy f6" for="gas_price">Gas price</label>
+      <input class="pa1 input-reset ba bg-transparent hover-bg-green hover-white w-100 tr" type="number" name="gas_price"  id="gas_price" v-model="gas_price">
+    </li>
+    <li v-if="pb.act.ds.type==='transaction' || pb.act.ds.type==='send'" class="mt2 bb b--black-10">
+      <label class="db fw6 lh-copy f6" for="send_gaslimit">Gas limit</label>
+      <input class="pa1 input-reset ba bg-transparent hover-bg-green hover-white w-100 tr pr3" type="number" name="send_gaslimit"  id="send_gaslimit" v-model="gas_limit">
+    </li>
+  </ul>
+  <ul class="list pl2 pr2 mt0 bg-washed-yellow">
+    <li class="mt2 bb b--black-10" v-for="param in inputs">
+      <label class="db fw6 lh-copy f6" for="param">{{param.name}} <span class="normal black-60">({{param.type}})</span></label>
+      <input class="pa1 input-reset ba bg-transparent hover-bg-green hover-white w-100 tr pr3" type="text" name="param"  id="param" v-model="param.pbvalue" >
+    </li>
+  </ul>
+  <div class="pa2 mb2">
+    <span class="w-100">
+      <span class="pa1 tl b input-reset ba b--gray gray bg-transparent grow pointer f6" onclick="$('#codeinfo').show();">Code Info</span>
+      <span class="pa1 tr b input-reset ba b--blue blue bg-transparent grow pointer f6" v-if="pb.act.ds.type==='call'" v-on:click="pb.act.call();">send</span>
+      <span class="pa1 tr b input-reset ba b--blue blue bg-transparent grow pointer f6" v-if="pb.act.ds.type==='send'" v-on:click="pb.act.send();">send</span>
+      <span class="pa1 tr b input-reset ba b--blue blue bg-transparent grow pointer f6" v-if="pb.act.ds.type==='transaction'" v-on:click="pb.act.sendTransaction();">transaction</span>
+      <span class="pa1 tr b input-reset ba b--red red bg-transparent grow pointer f6" v-on:click="show=false">close</span>
+    </span>
+  </div>
+    <div id="codeinfo" style="display:none;">
+    <textarea id="codeinfo_sample" class="w-100 hide pv3"></textarea>
+  </div>
+</div>
+</div>
+
+
+
+
+  <!-- jQuery-->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.js"></script>
+  <script src="./app.js"></script>
+
+  <script>
+function openNav() {
+  if(pb.wallet.state === 'default' || pb.wallet.state === 'undefined'){
+    document.getElementById('sideWallets').style.width = '450px';
+    document.getElementById('main').style.marginLeft = '450px';
+  } else {
+    document.getElementById('sideWallets').style.width = '200px';
+    document.getElementById('main').style.marginLeft = '200px';
+  }
+  
+}
+
+function closeNav() {
+  document.getElementById('sideWallets').style.width = '0';
+    document.getElementById('main').style.marginLeft = '0';
+}
+</script>
+
+</body>
+</html>
+
