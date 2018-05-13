@@ -211,15 +211,15 @@
         <label class="db fw6 lh-copy f6" for="send_addr">to</label>
         <span  class="f8 link blue hover-dark-gray" id ="send_addr">{{to}}</span>
     </li>
-    <li class="mt2 bb b--black-10">
+    <li v-if="pb.act.ds.type==='transaction' || pb.act.ds.type==='send'" class="mt2 bb b--black-10">
         <label class="db fw6 lh-copy f6" for="ether_value">Ether</label>
         <input class="pa1 input-reset ba bg-transparent hover-bg-green hover-white w-100 tr" type="number" name="ether_value"  id="ether_value" v-model="ether_value">
     </li>
-    <li class="mt2 bb b--black-10">
+    <li v-if="pb.act.ds.type==='transaction' || pb.act.ds.type==='send'" class="mt2 bb b--black-10">
       <label class="db fw6 lh-copy f6" for="gas_price">Gas price</label>
       <input class="pa1 input-reset ba bg-transparent hover-bg-green hover-white w-100 tr" type="number" name="gas_price"  id="gas_price" v-model="gas_price">
     </li>
-    <li class="mt2 bb b--black-10">
+    <li v-if="pb.act.ds.type==='transaction' || pb.act.ds.type==='send'" class="mt2 bb b--black-10">
       <label class="db fw6 lh-copy f6" for="send_gaslimit">Gas limit</label>
       <input class="pa1 input-reset ba bg-transparent hover-bg-green hover-white w-100 tr pr3" type="number" name="send_gaslimit"  id="send_gaslimit" v-model="gas_limit">
     </li>
@@ -233,14 +233,15 @@
   <div class="pa2 mb2">
     <span class="w-100">
       <span class="pa1 tl b input-reset ba b--gray gray bg-transparent grow pointer f6" onclick="$('#codeinfo').show();">Code Info</span>
-
-      <span class="pa1 tr b input-reset ba b--blue blue bg-transparent grow pointer f6" v-on:click="pb.act.send();">send</span>
+      <span class="pa1 tr b input-reset ba b--blue blue bg-transparent grow pointer f6" v-if="pb.act.ds.type==='call'" v-on:click="pb.act.call();">send</span>
+      <span class="pa1 tr b input-reset ba b--blue blue bg-transparent grow pointer f6" v-if="pb.act.ds.type==='send'" v-on:click="pb.act.send();">send</span>
+      <span class="pa1 tr b input-reset ba b--blue blue bg-transparent grow pointer f6" v-if="pb.act.ds.type==='transaction'" v-on:click="pb.act.sendTransaction();">transaction</span>
       <span class="pa1 tr b input-reset ba b--red red bg-transparent grow pointer f6" v-on:click="show=false">close</span>
     </span>
   </div>
     <div id="codeinfo" style="display:none;">
     <textarea id="codeinfo_sample" class="w-100 hide pv3"></textarea>
-    </div>
+  </div>
 </div>
 </div>
 

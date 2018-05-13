@@ -170,6 +170,12 @@ window.pb.wallet = {
     });
 
   },
+  reloadAllbal:function() {
+    for (var i = 0; i < pb.wallet.list.length; i++) {
+      var item = pb.wallet.list[i];
+      item.info.balance = this.refreshBalance(item.info.address);
+    }
+  },
   getPrivateKey:function () {
 
   },
@@ -348,6 +354,7 @@ window.pb.contract = {
         var runtimeContract = structureContract.at(obj.address);
         var item = {};
         item.name = rappedContract.contractName;
+        item.info.balance = pb.wallet.refreshBalance(item.address);
         item.address = obj.address;
         item.info = runtimeContract;
         item.view = {};
@@ -370,6 +377,12 @@ window.pb.contract = {
   },
   getFunctionByName:function (_name) {
 
+  },
+  reloadAllbal:function (){
+     for (var i = 0; i < pb.wallet.contract.length; i++) {
+      var item = pb.contract.list[i];
+      item.info.balance = pb.wallet.refreshBalance(item.address);
+    }
   },
   send:function (to, from) {
 

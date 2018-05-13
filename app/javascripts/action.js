@@ -1,13 +1,13 @@
 
 window.pb.act = {
   ds:{
-    show:true,
+    show:false,
     type:'',
-    from:'0x77dbc562a055861af11e1c85d7723fe537a225c5',
-    to:'0x77dbc562a055861af11e1c85d7723fe537a225c5',
+    from:'',
+    to:'',
     ether_value:1,
-    gas_price:0,
-    gas_limit:0,
+    gas_price:21000,
+    gas_limit:40000,
     inputs:[],
     outputs:[],
     code:{},
@@ -18,7 +18,6 @@ window.pb.act = {
       el: '#action_popup',
       data: window.pb.act.ds,
       computed: {
-    
       },
       created: function () {
       }
@@ -36,7 +35,7 @@ window.pb.act = {
     if(this.check_walletbase()){
       return;
     }
-
+    this.ds.ether_value = 1;
     this.ds.from = pb.wallet.base;
     this.ds.to = _to;
     this.ds.type = 'send';
@@ -46,7 +45,6 @@ window.pb.act = {
     if(this.check_walletbase()){
       return;
     }
-
     var obj = pb.contract.getContractByAddr(_to);
     var abi = obj.info.abi;
     var inputs;
@@ -56,17 +54,169 @@ window.pb.act = {
       }
     }
 
+    this.ds.ether_value = 0;
     this.ds.target = obj;
+    this.ds.func = _func;
     this.ds.inputs = inputs;
     this.ds.from = pb.wallet.base;
     this.ds.to = _to;
     this.ds.type = 'transaction';
     this.ds.show = true;
-
   },
   send:function () {
-    console.log({ from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') });
-    // window.web3.eth.sendTransaction ({ from:this.from, to:this.to, value: window.web3.toWei(this.ether_value, 'ether') });
+    // console.log({ from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') });
+    window.web3.eth.sendTransaction ({ from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') }
+     ,function (err, result) {
+        if (result) {
+          console.log(result); 
+          window.pb.act.ds.show = false;
+          reloadAll();
+        } else {
+          console.log(err);
+        }
+      });
+  },
+  sendTransaction:function () {
+
+     //console.log(this.ds.inputs);
+    // for (var i = 0; i < this.ds.inputs.length; i++) {
+    //   var item = this.ds.inputs[i];
+    // }
+    console.log('sendTransaction !!!!');
+
+
+    var cnt = this.ds.inputs.length;
+    if (cnt === 0) {
+      window.web3.eth.sendTransaction ({ from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') });
+    } else if (cnt === 1) {
+      var param1 = this.ds.inputs[0].value;
+      this.ds.target.info[this.ds.func].sendTransaction (param1, { from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') }
+        , function (err, hash) {
+          if (hash) {
+            window.pb.act.txSuccess(hash, this.ds);
+            window.pb.act.ds.show = false;
+          } else {
+            window.pb.act.txFail(err, this.ds);
+            window.pb.act.ds.show = false;
+          }
+        });
+    } else if (cnt === 2) {
+      var param1 = this.ds.inputs[0].value;
+      var param2 = this.ds.inputs[1].value;
+      this.ds.target.info[this.ds.func].sendTransaction (param1, param2, { from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') }
+        , function (err, hash) {
+          if (hash) {
+            window.pb.act.txSuccess(hash, this.ds);
+            window.pb.act.ds.show = false;
+          } else {
+            window.pb.act.txFail(err, this.ds);
+            window.pb.act.ds.show = false;
+          }
+        });
+
+    } else if (cnt === 3) {
+      var param1 = this.ds.inputs[0].value;
+      var param2 = this.ds.inputs[1].value;
+      var param3 = this.ds.inputs[2].value;
+      this.ds.target.info[this.ds.func].sendTransaction (param1, param2, param3, { from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') }
+        , function (err, hash) {
+          if (hash) {
+            window.pb.act.txSuccess(hash, this.ds);
+            window.pb.act.ds.show = false;
+          } else {
+            window.pb.act.txFail(err, this.ds);
+            window.pb.act.ds.show = false;
+          }
+        });
+      
+    } else if (cnt === 4) {
+      var param1 = this.ds.inputs[0].value;
+      var param2 = this.ds.inputs[1].value;
+      var param3 = this.ds.inputs[2].value;
+      var param4 = this.ds.inputs[3].value;
+      this.ds.target.info[this.ds.func].sendTransaction (param1, param2, param3, param4, { from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') }
+        , function (err, hash) {
+          if (hash) {
+            window.pb.act.txSuccess(hash, this.ds);
+            window.pb.act.ds.show = false;
+          } else {
+            window.pb.act.txFail(err, this.ds);
+            window.pb.act.ds.show = false;
+          }
+        });
+      
+    } else if (cnt === 5) {
+      var param1 = this.ds.inputs[0].value;
+      var param2 = this.ds.inputs[1].value;
+      var param3 = this.ds.inputs[2].value;
+      var param4 = this.ds.inputs[3].value;
+      var param5 = this.ds.inputs[4].value;
+      this.ds.target.info[this.ds.func].sendTransaction (param1, param2, param3, param4, param5, { from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') }
+        , function (err, hash) {
+          if (hash) {
+            window.pb.act.txSuccess(hash, this.ds);
+            window.pb.act.ds.show = false;
+          } else {
+            window.pb.act.txFail(err, this.ds);
+            window.pb.act.ds.show = false;
+          }
+        });
+      
+    } else if (cnt === 6) {
+      var param1 = this.ds.inputs[0].value;
+      var param2 = this.ds.inputs[1].value;
+      var param3 = this.ds.inputs[2].value;
+      var param4 = this.ds.inputs[3].value;
+      var param5 = this.ds.inputs[4].value;
+      var param6 = this.ds.inputs[5].value;
+      this.ds.target.info[this.ds.func].sendTransaction (param1, param2, param3, param4, param5, param6, { from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') }
+        , function (err, hash) {
+          if (hash) {
+            window.pb.act.txSuccess(hash, this.ds);
+            window.pb.act.ds.show = false;
+          } else {
+            window.pb.act.txFail(err, this.ds);
+            window.pb.act.ds.show = false;
+          }
+        });
+    } else if (cnt === 7) {
+      var param1 = this.ds.inputs[0].value;
+      var param2 = this.ds.inputs[1].value;
+      var param3 = this.ds.inputs[2].value;
+      var param4 = this.ds.inputs[3].value;
+      var param5 = this.ds.inputs[4].value;
+      var param6 = this.ds.inputs[5].value;
+      var param7 = this.ds.inputs[5].value;
+      this.ds.target.info[this.ds.func].sendTransaction (param1, param2, param3, param4, param5, param6, param7, { from:this.ds.from, to:this.ds.to, value: window.web3.toWei(this.ds.ether_value, 'ether') }
+        , function (err, hash) {
+          if (hash) {
+            window.pb.act.txSuccess(hash, this.ds);
+            window.pb.act.ds.show = false;
+          } else {
+            window.pb.act.txFail(err, this.ds);
+            window.pb.act.ds.show = false;
+          }
+        });
+    } else {
+      
+    }
+
+  },
+  txSuccess:function (hash, data) {
+    console.log(hash);
+    this.reloadAll();
+  },
+  txFail:function (err, data) {},
+  estimateContractgas:function () {
+    var param1 = this.ds.inputs[0].value;
+    var contractData = this.ds.target.info[this.ds.func].new.getData(someparam, another, {data: contractCode});
+    var estimate = web3.eth.estimateGas({data: contractData});
+    return estimate;
+  },
+  reloadAll:function () {
+    pb.wallet.reloadAllbal();
+    pb.contract.reloadAllbal();
+    pb.action.callAll();
   }
 
 };
@@ -160,7 +310,7 @@ window.pb.action = {
 
           }else if (argType.substring(0, 3) === 'int' || argType.substring(0, 4) === 'uint') {
             console.log('uint', argType, argName);
-          } else if (argType.substring(0, 4) === 'address') {
+          } else if (argType.substring(0, 7) === 'address') {
 
           } else if (argType.substring(0, 4) === 'byte') {
             console.log('byte');
