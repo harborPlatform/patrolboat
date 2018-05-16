@@ -13,6 +13,7 @@ Ethereum Smart contract test tool with UI support
 ## 문제점
 스마트 컨트랙트 테스트가 어렵고, 시간이 많이 소모된다.
 
+![Alt text](https://github.com/harborPlatform/patrolboat/blob/master/screenshot_201805016.JPG "screenshot 201805016")
 
 ## 개선목표
 
@@ -27,4 +28,3 @@ Ethereum Smart contract test tool with UI support
 * Smart Contract 및 dapp의 개발과 테스트 시간을 줄여줄 수 있도록 하자.
 
 
-![Alt text](https://github.com/harborPlatform/patrolboat/blob/master/screenshot_201805016.JPG "screenshot 201805016")
