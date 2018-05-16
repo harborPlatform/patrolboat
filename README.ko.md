@@ -27,4 +27,4 @@ Ethereum Smart contract test tool with UI support
 * Smart Contract 및 dapp의 개발과 테스트 시간을 줄여줄 수 있도록 하자.
 
 
-![스크린샷 이미지](screenshot_201805016.JPG "screenshot_201805016.JPG")
+![Alt text](https://github.com/harborPlatform/patrolboat/blob/master/screenshot_201805016.JPG "screenshot 201805016")
